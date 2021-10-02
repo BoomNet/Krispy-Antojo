@@ -1,0 +1,21 @@
+{
+    "name": "alexisbeltran/bienesraices",
+    "description": "Creando un proyecto con POO",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Model\\": "./Models",
+            "MVC\\": "./",
+            "Controllers\\": "./Controllers"
+        }
+    },
+    "authors": [
+        {
+            "name": "AlexisBeltran",
+            "email": "jesus_beltran011@outlook.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.6"
+    }
+}
