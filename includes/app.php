@@ -3,6 +3,6 @@
     require 'config/database.php';
     require __DIR__ . '/../vendor/autoload.php';
     $db = conectarDB();
-    use Model\ActiveRecord;  
+    use Model\ActiveRecord;
     ActiveRecord::setDB($db);
 ?>
