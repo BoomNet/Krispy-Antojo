@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.js"],"names":["document","addEventListener","console","log"],"mappings":"AAAAA,SAAAC,iBAAA,KACAC,QAAAC,IAAA","file":"bundle.js","sourcesContent":["document.addEventListener(() => {\r\n    console.log('Rolando Programador');\r\n});"]}
