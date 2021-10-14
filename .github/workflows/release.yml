@@ -1,0 +1,13 @@
+
+name: ReleaseCI
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Upload version to IC test env
+      run: bash .github/workflows/deploy.sh ${{secrets.IC_PROJECT_ACCESS_TOKEN}}
