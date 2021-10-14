@@ -1,15 +1,15 @@
-<?php 
-    require __DIR__ . "/../../vendor/autoload.php";  
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
-    $dotenv->load();
-    function conectarDB() : mysqli{
-        $mode = $_ENV;
-        $db = new mysqli($mode['MYSQL_ADDON_HOST'], $mode['MYSQL_ADDON_USER'], $mode['MYSQL_ADDON_PASSWORD'], $mode['MYSQL_ADDON_DB']);
-        if(!$db){
-            echo 'Error en la conexion';
-            exit;
-        }
-        return $db;
+<?php
+define('DB_HOST', 'bajk3pstup1xeoyoztfm-mysql.services.clever-cloud.com');
+define('DB_USER', 'uue7rg1shwfrml7n');
+define('DB_PASS', 'tjn4MScWgVeLZVPgTes2');
+define('DB_NAME', 'bajk3pstup1xeoyoztfm');
+
+function conectarDB(): mysqli
+{
+    $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if (!$db) {
+        echo 'Error en la conexion';
+        exit;
     }
-    
-?>
+    return $db;
+}
