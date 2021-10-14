@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Bienes Raices Enfocado en el patrón de arquitectura MVC",
   "main": "gulpfile.js",
+  "homepage": ".",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
