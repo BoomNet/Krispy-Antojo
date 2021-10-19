@@ -18,6 +18,18 @@
             $this->fecha_gasto = date('Y/m/d');
             $this->cveusuario_gasto = $args['cveusuario_gasto'];
         }
+
+        public function ValidarGasto(){
+            if(strlen($this->descripcion_gasto) < 50){
+                self::$Errores[] = "La descripcion es obligatoria y debe tener al menos 50 caracteres";
+            }
+            if(!$this->cantidad_gasto){
+                self::$Errores[] = "La cantidad es obligatoria";
+            }
+            if(!$this->cveusuario_gasto){
+                self::$Errores[] = "El usuario es obligatorio";
+            }
+        }
     }
 
 ?>
