@@ -1,7 +1,8 @@
 <?php 
     namespace Controllers;
     use Model\Rol;
-    use MVC\Router;
+use Model\Usuario;
+use MVC\Router;
     
     class rolControllers{
         public static function crear(Router $router){
@@ -23,7 +24,7 @@
         public static function actualizar(Router $router){
             $id = ValidarORedireccionar('/admin');
             $Errores = Rol::getError();
-            $rol = new Rol;
+            $rol = Rol::find($id);            
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $args = new Rol($_POST['rol']);
                 $rol->Sincronizar($args);
