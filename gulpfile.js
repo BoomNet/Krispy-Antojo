@@ -13,7 +13,7 @@ const cache = require('gulp-cache');
 const webp = require('gulp-webp');
 
 const paths = {
-    scss: 'src/scss/**/*.scss',
+    scss: 'src/css/**/*.css',
     js: 'src/js/**/*.js',
     imagenes: 'src/img/**/*'
 }
@@ -54,4 +54,4 @@ function versionWebp() {
         .pipe(notify({ message: 'Imagen Completada'}));
 }
 
-exports.default = parallel(css, javascript, imagenes, versionWebp);
+exports.default = parallel(css, javascript, imagenes, versionWebp, javascriptMin);
