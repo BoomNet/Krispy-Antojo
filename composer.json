@@ -2,6 +2,14 @@
     "name": "alexisbeltran/bienesraices",
     "description": "Creando un proyecto con POO",
     "type": "project",
+    "scripts": {
+        "post-update-cmd": [
+            "cd Public/build/css",
+            "XCOPY /E /I vendor\\twbs\\bootstrap\\dist\\css\\bootstrap.min.css Public\\build\\css",
+            "cd Public/build/js/",
+            "XCOPY /E /I vendor\\twbs\\bootstrap\\dist\\js\\bootstrap.min.js Public\\build\\js"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "Model\\": "./Models",
@@ -17,7 +25,8 @@
     ],
     "require": {
         "intervention/image": "^2.6",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "twbs/bootstrap": "^5.1"
     },
     "license": "MIT"
 }
