@@ -29,5 +29,30 @@
             $this->fechamod_usuario = date('Y/m/d') ?? null;
             $this->cverol_usuario = $args['cverol_usuario'];
         }
+
+        public function ValidarUsuario(){
+            if(!$this->nombre_usuario){
+                self::$Errores[] = "El nombre es obligatorio";
+            }
+            if(!$this->apellidopa_usuario){
+                self::$Errores[] = "El apellido paterno es obligatorio";
+            }
+            if(!$this->apellidoma_usuario){
+                self::$Errores[] = "El apellido materno es obligatorio";
+            }
+            if(!$this->telefono_usuario){
+                self::$Errores[] = "Numero de telefono obligatorio";
+            }
+            if(!$this->usuario_usuario){
+                self::$Errores[] = "El nombre de usuario es obligatorio";
+            }
+            if(!$this->contraseña_usuario){
+                self::$Errores[] = "La contraseña es obligatorio";
+            }
+            if(!$this->cve_usuario){
+                self::$Errores[] = "El rol es obligatorio";
+            }
+        }
+        
     }
 ?>
