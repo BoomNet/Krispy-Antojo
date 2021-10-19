@@ -37,7 +37,7 @@ use MVC\Router;
                 'Errores' => $Errores
             ]);
         }
-        public static function eliminar(Router $render){
+        public static function eliminar(){
             $id = $_POST['id'];
             $id = filter_var($id, FILTER_VALIDATE_INT);
             if($id){

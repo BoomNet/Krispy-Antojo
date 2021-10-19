@@ -28,7 +28,7 @@
                 $gasto->Sincronizar($args);
                 $Errores = $gasto->ValidarGasto();
                 if(empty($Errores)){
-                    $gasto->guardar();
+                    $gasto->Guardar();
                 }
             }
             $router->render('/gasto/actualizar', [
@@ -36,7 +36,7 @@
                 'Errores' => $Errores
             ]);
         }
-        public static function Eliminar(Router $router){
+        public static function Eliminar(){
             $id = $_POST['id'];
             $id = filter_var($id, FILTER_VALIDATE_INT);
             if($id){
