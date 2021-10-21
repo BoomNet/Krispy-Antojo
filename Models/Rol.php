@@ -12,5 +12,11 @@
         {
             $this->rol = $args['rol'];
         }
+
+        public function validarRol(){
+            if(!$this->rol){
+                self::$Errores[] = "El rol debe ser obligatorio";
+            }
+        }
     }
 ?>
