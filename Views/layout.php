@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krispy Antojo</title>
     <link href="/build/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/build/css/login.css" rel="stylesheet" >
 </head>
 <body>
     <header>
