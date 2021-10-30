@@ -54,4 +54,4 @@ function versionWebp() {
         .pipe(notify({ message: 'Imagen Completada'}));
 }
 
-exports.default = parallel(css, javascript, imagenes, versionWebp, javascriptMin);
+exports.default = parallel(css, javascript, imagenes, versionWebp);
