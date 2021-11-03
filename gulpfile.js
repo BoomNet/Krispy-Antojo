@@ -11,6 +11,7 @@ const imagemin = require('gulp-imagemin');
 const notify = require('gulp-notify');
 const cache = require('gulp-cache');
 const webp = require('gulp-webp');
+const cleanCSS = require('gulp-clean-css');
 
 const paths = {
     scss: 'src/css/**/*.css',
@@ -21,11 +22,9 @@ const paths = {
 // css es una función que se puede llamar automaticamente
 function css() {
     return src(paths.scss)
-        .pipe(init())
-        .pipe(sass())
-        .pipe(postcss([autoprefixer(), cssnano()]))
-        // .pipe(postcss([autoprefixer()]))
-        .pipe(write('.'))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(concat('app.css'))
+        .pipe(rename({suffix: '.min'}))
         .pipe( dest('./Public/build/css') );
 }
 
