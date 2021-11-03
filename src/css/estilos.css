@@ -42,11 +42,6 @@ a{
     text-decoration: none;
 }
 /* ****LOGIN*** */
-.background{
-    background-color: #C51E4A;
-    padding-top: 5rem;
-    height: 100vh;
-}
 .contenido-login{
     max-width: 70rem;
     margin: 0 auto;
@@ -61,14 +56,14 @@ a{
 .formulario-login{
     max-width: 60rem;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
 }
 .formulario-login input{
     max-width: 100%;
     width: 90%;
     margin: 1rem 0 .5rem 0;
+}
+.formulario-login input:focus{
+    outline: none;
 }
 .boton{
     display: inline-block;
@@ -76,7 +71,7 @@ a{
 }
 .boton-rosa{
     background-color: #C51E4A;
-    color: #fff;
+    color: #fff !important;
     font-size: 1.5rem;
     text-transform: uppercase;
     border: none;
@@ -91,4 +86,15 @@ a{
 }
 .formulario-cuenta a:hover{
     color: #911737;
+}
+/* ***RESPONSIVE *** */
+@media(min-width: 280px){
+    .formulario-crear{
+        text-align: center;
+    }
+}
+@media(min-width: 768px){
+    .formulario-crear{
+        text-align: left;
+    }
 }
