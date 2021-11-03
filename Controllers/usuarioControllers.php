@@ -15,7 +15,7 @@ use MVC\Router;
                     $usuario->Guardar();
                 }
             }
-            $router->render('/usuario/crear',[
+            $router->render('/Pagina/crear',[
                 'usuario' => $usuario,
                 'Errores' => $Errores
             ]);
