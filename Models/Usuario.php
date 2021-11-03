@@ -19,15 +19,15 @@
 
         public function __construct($args = [])
         {
-            $this->nombre_usuario = $args['nombre_usuario'];
-            $this->apellidopa_usuario = $args['apellidopa_usuario'];
-            $this->apellidoma_usuario = $args['apellidoma_usuario'];
-            $this->telefono_usuario = $args['telefono_usuario'];
-            $this->usuario_usuario = $args['usuario_usuario'];
-            $this->contraseña_usuario = $args['contraseña_usuario'];
+            $this->nombre_usuario = $args['nombre_usuario'] ?? '';
+            $this->apellidopa_usuario = $args['apellidopa_usuario'] ?? '';
+            $this->apellidoma_usuario = $args['apellidoma_usuario'] ?? '';
+            $this->telefono_usuario = $args['telefono_usuario'] ?? '';
+            $this->usuario_usuario = $args['usuario_usuario'] ?? '';
+            $this->contraseña_usuario = $args['contraseña_usuario'] ?? '';
             $this->fechacrea_usuario = date('Y/m/d');
             $this->fechamod_usuario = date('Y/m/d') ?? null;
-            $this->cverol_usuario = $args['cverol_usuario'];
+            $this->cverol_usuario = $args['cverol_usuario'] ?? '';
         }
 
         public function ValidarUsuario(){

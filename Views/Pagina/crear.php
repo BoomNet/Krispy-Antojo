@@ -4,7 +4,7 @@
             <div class="pictures">
                 <img src="/build/img/Logo.png" alt="Logo Krispy">
             </div>
-            <?php include __DIR__ . "/formulario-login.php"?>
+            <?php include __DIR__ . "/formulario-crear.php"?>
         </div>
     </div>
 </div>
