@@ -53,4 +53,12 @@ function versionWebp() {
         .pipe(notify({ message: 'Imagen Completada'}));
 }
 
-exports.default = parallel(css, javascript, imagenes, versionWebp);
+function watchArchivos() {
+    watch( paths.scss, css );
+    watch( paths.js, javascript );
+    watch( paths.imagenes, imagenes );
+    watch( paths.imagenes, versionWebp );
+}
+  
+
+exports.default = parallel(css, javascript, imagenes, versionWebp, watchArchivos);
