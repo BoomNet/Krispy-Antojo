@@ -98,3 +98,7 @@ a{
         text-align: left;
     }
 }
+
+.bg{
+    background-color: aqua;
+}
