@@ -63,6 +63,34 @@
             if(!$this->contrasenia_usuario){
                 self::$Errores[] = "La contraseña es obligatoria";
             }
+            return self::$Errores;
+        }
+
+        public function existeEmail(){
+            $query = "SELECT * FROM usuario WHERE correo_usuario = '" . $this->correo_usuario . "' LIMIT 1;";
+            $Resultado = self::$db->query($query);
+            if(!$Resultado->num_rows){
+                self::$Errores[] = "El correo no existe";
+                return;
+            }
+            return $Resultado;
+        }
+
+        public function comprobarPassword($Resultado){
+            $usuario = $Resultado->fetch_object();  
+            $Autenticado = password_verify($this->contrasenia_usuario, $usuario->contrasenia_usuario);
+            if(!$Autenticado){
+                self::$Errores[] = 'La contraseña es incorrecta';
+                return;
+            }
+            return $Resultado;
+        }
+
+        public function autenticar(){
+            session_start();
+            $_SESSION['usuario'] = $this->correo;
+            $_SESSION['login'] = true;
+            header('Location: /');
         }
         
     }
