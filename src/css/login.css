@@ -1,20 +1,23 @@
 .bg-login{
-    background-color: #a741d0;
-    background-image: linear-gradient(43deg, #a741d0 0%, #C850C0 46%, #ff70d2 100%);
+  background-color: #a741d0;
+  background-image: linear-gradient(43deg, #a741d0 0%, #C850C0 46%, #ff70d2 100%);
 }
-
-html, body{
-    height: 100%;
-    width: 100%;
+  
+  html, body{
+  height: 100%;
+  width: 100%;
 }
-
+  
 body{
-    display: flex;
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
-
+input:focus{
+  outline: none;  
+}
+  
 .button {
     display: inline-block;
     font-weight: 400;
@@ -60,6 +63,7 @@ body{
     appearance: none;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
 
 .rounded-p{
     border-radius: 2rem;
