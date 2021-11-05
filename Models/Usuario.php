@@ -78,7 +78,13 @@
 
         public function comprobarPassword($Resultado){
             $usuario = $Resultado->fetch_object();  
-            $Autenticado = password_verify($this->contrasenia_usuario, $usuario->contrasenia_usuario);
+            $Autenticado = false;
+            if($this->contrasenia_usuario === $usuario->contrasenia_usuario){
+                $Autenticado = true;
+            }else{
+                $Autenticado = false;
+            }
+            //$Autenticado = password_verify($this->contrasenia_usuario, $usuario->contrasenia_usuario);
             if(!$Autenticado){
                 self::$Errores[] = 'La contraseña es incorrecta';
                 return;
@@ -88,9 +94,9 @@
 
         public function autenticar(){
             session_start();
-            $_SESSION['usuario'] = $this->correo;
+            $_SESSION['usuario'] = $this->correo_usuario;
             $_SESSION['login'] = true;
-            header('Location: /');
+            header('Location: /Dashboard/dashboard');
         }
         
     }

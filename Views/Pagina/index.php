@@ -2,11 +2,13 @@
     <main class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 col-lg-4">
-                    <?php foreach($Errores as $Error):?>
-                        <div class="alerta-error">
-                            <?php echo $Error;?>
-                        </div>
-                    <?php endforeach;?>
+                    <?php if($Errores):?>
+                        <?php foreach($Errores as $Error):?>
+                            <div class="alerta-error">
+                                <?php echo $Error;?>
+                            </div>
+                        <?php endforeach;?>
+                    <?php endif;?>
                     <form class="bg-white  p-3 rounded-p shadow" style="height: 550px;" method="POST" action="/">
                         <img class="img-fluid ps-4 py-3" src="/build/img/Logo.png" alt="">
                         <h1 class="h4 mb-3">INICIAR SESION</h1>

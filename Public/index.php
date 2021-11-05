@@ -3,13 +3,17 @@
     use MVC\Router;    
     use Controllers\paginaControllers;
     use Controllers\usuarioControllers;
+    use Controllers\dashboardControllers;
 
     $Router = new Router();
 
-    //PUBLIC AREA
+    //LOGIN AREA
     $Router->get('/', [paginaControllers::class, 'index']);
     $Router->post('/', [paginaControllers::class, 'login']);
     $Router->get('/Pagina/crear', [usuarioControllers::class, 'crear']);
+
+    //DASHBOARD AREA
+    $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'dash']);
 
     $Router->ComprobarRutas();
 ?>
