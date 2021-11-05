@@ -2,16 +2,23 @@
     <main class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 col-lg-4">
-                    <form class="bg-white  p-3 rounded-p shadow" style="height: 550px;">
+                    <?php if($Errores):?>
+                        <?php foreach($Errores as $Error):?>
+                            <div class="alerta-error">
+                                <?php echo $Error;?>
+                            </div>
+                        <?php endforeach;?>
+                    <?php endif;?>
+                    <form class="bg-white  p-3 rounded-p shadow" style="height: 550px;" method="POST" action="/">
                         <img class="img-fluid ps-4 py-3" src="/build/img/Logo.png" alt="">
                         <h1 class="h4 mb-3">INICIAR SESION</h1>
                         <!-- Correo -->
                         <div class="col-12 form-floating px-3">
-                            <input type="text" class="form-ctrl " id="correo" placeholder="Correo">
+                            <input type="text" class="form-ctrl " id="correo" placeholder="Correo" name="correo_usuario">
                         </div>
                         <!-- Contraseña -->
                         <div class="col-12 form-floating px-3 mt-3">
-                            <input type="password" id="password" class="form-ctrl" placeholder="Contraseña">
+                            <input type="password" id="password" class="form-ctrl" placeholder="Contraseña" name="contrasenia_usuario">
                         </div>
                         <button type="submit" class="w-75 button btn-lg btn-rosa rounded-pill text-center my-4">INICIAR SESION</button>
                         <div  class="col-12 align-self-end pt-5">
