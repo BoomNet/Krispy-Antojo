@@ -12,15 +12,22 @@
         }
 
         public function ComprobarRutas(){
+            session_start();
+            $Autenticado = $_SESSION['login'] ?? null;
+            $rutasProtegidas = ['/Dashboard/dashboard'];
             $UrlActual = $_SERVER['PATH_INFO'] ?? '/';
             $Metodo = $_SERVER['REQUEST_METHOD'];
+            
 
             if($Metodo === 'GET'){
                 $fn = $this->RutasGET[$UrlActual] ?? null;
             } else{
                 $fn = $this->RutasPOST[$UrlActual] ?? null;
             }
-
+            //Proteger las rutas
+            if(in_array($UrlActual, $rutasProtegidas) && !$Autenticado){
+                header('Location: /');
+            }
             if($fn){
                 //La URL existe y hay una funcion asociada
                 //php -S localhost:3000
