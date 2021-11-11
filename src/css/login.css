@@ -106,10 +106,11 @@ input:focus{
 }
 .sidebar .logo-details .logo_name{
   color: #fff;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
+  margin-left: 13px;
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name{
@@ -118,7 +119,7 @@ input:focus{
 .sidebar .logo-details #btn{
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 10px;
   transform: translateY(-50%);
   font-size: 22px;
   transition: all 0.4s ease;
@@ -324,4 +325,20 @@ input:focus{
   .sidebar li .tooltip{
     display: none;
   }
+}
+.logout{
+  cursor: pointer
+}
+.activo{
+  display: block;
+}
+.ocultar{
+  display: none !important;
+}
+.logo_krispy{
+  margin: 0 auto;
+  display: block;
+  max-width: 20rem;
+  opacity: 50%;
+  margin-top: 5rem;
 }
