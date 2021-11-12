@@ -60,14 +60,16 @@
            </div>
          </div>
          <div>
-           <i class='bx bx-log-out logout' id="log_out" ></i>
-         </div>
+           <a href="../Pagina/index.php">
+             <i class='bx bx-log-out logout' id="log_out" ></i>
+            </a>
+          </div>
      </li>
     </ul>
   </div>
 <section class="home-section section-main">
   <img src="/build/img/Fondo.png" alt="Logo Krispy Antojo" class="logo_krispy activo">
-  <div class="bg-light rounded m-5 usuario ocultar">
+  <div class="bg-body rounded m-5 usuario ocultar">
     <h1 class="text-center">Usuario</h1>
     <form class="row" action="" method="post">
       <!-- CLAVE-ROL -->
@@ -84,43 +86,41 @@
         </div>
       </div>
       <!-- NOMBRE-APELLIDOS -->
-      <div class="col-12 d-lg-flex">
-        <div class="col-12 col-lg-4 p-1 p-lg-3">
-          <label class="form-label">Nombre</label>
-          <input class="form-control" id="nombre_usuario" type="text">
-        </div>
-        <div class="col-12 col-lg-4 p-1 p-lg-3">
-          <label class="form-label">Apellido Paterno</label>
-          <input class="form-control" id="apellidopa_usuario" type="text">
-        </div>
-        <div class="col-12 col-lg-4 p-1 p-lg-3">
-          <label class="form-label">Apellido Materno</label>
-          <input class="form-control" id="apellidoma_usuario" type="text">
-        </div>
+      <fieldset class="col-12 d-lg-flex ">
+        <legend>Informacion Personal</legend>
+      <div class="col-12 col-lg-4 p-1 p-lg-3">
+        <label class="">Nombre</label>
+        <input class="form-ctrl" id="nombre_usuario" type="text">
       </div>
+      <div class="col-12 col-lg-4 p-1 p-lg-3">
+        <label class="">Apellido Paterno</label>
+        <input class="form-ctrl" id="apellidopa_usuario" type="text">
+      </div>
+      <div class="col-12 col-lg-4 p-1 p-lg-3">
+        <label class="">Apellido Materno</label>
+        <input class="form-ctrl" id="apellidoma_usuario" type="text">
+      </div>
+      </fieldset>
       <!-- USUARIO-CORREO -->
       <div class="col-12 d-lg-flex">
         <div class="col-12 col-lg-4 p-1 p-lg-3">
-          <label class="form-label">Nombre de Usuario</label>
-          <div class="input-group">
-            <div class="input-group-text">@</div>
-            <input class="form-control" id="usuario_usuario" type="text">
-          </div>
+          <label class="">Nombre de Usuario</label>
+            <input class="form-ctrl" id="usuario_usuario" placeholder="@" type="text">
         </div>
         <div class="col-12 col-lg-8 p-1 p-lg-3">
-          <label class="form-label">Correo</label>
-          <input class="form-control" id="correo" type="email">
+          <label class="">Correo</label>
+          <input class="form-ctrl" id="correo" type="email">
         </div>
       </div>
       <!-- CORREO -->
       <div class="col-12 d-lg-flex">
         <div class="col-12 col-lg-6 p-1 p-lg-3">
-          <label class="form-label">Contraseña</label>
-          <input class="form-control" id="contrasenia" type="password" >
+          <label class="">Contraseña</label>
+          <input class="form-ctrl" id="contrasenia" type="password" >
         </div>
         <div class="col-12 col-lg-6 p-1 p-lg-3">
-          <label class="form-label">Confirmar Contraseña</label>
-          <input class="form-control" id="confirm_contrasenia" type="password">
+          <label class="">Confirmar Contraseña</label>
+          <input class="form-ctrl" id="confirm_contrasenia" type="password">
         </div>
       </div>
     </form>
