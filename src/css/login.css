@@ -61,6 +61,10 @@ legend {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.border-pink{
+  border: #C51E4A;
+}
+
 .btn-rosa{
     color: #fff;
     background-color: #C51E4A;
