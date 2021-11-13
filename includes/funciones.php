@@ -46,4 +46,15 @@
         }
         return $id;
     }
+    function GetView($url){
+        $view = intval($_GET['View']) ?? null;
+        if(isset($view)){
+            $View = filter_var($view, FILTER_VALIDATE_INT);
+            if(!$View){
+                header("Location: ${url}");
+            }
+            return $View;
+        }
+        
+    }
 ?>
