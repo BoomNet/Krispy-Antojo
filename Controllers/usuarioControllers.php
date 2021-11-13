@@ -27,7 +27,7 @@ use Model\Usuario;
                             $usuario->fechamod_usuario = null;
                             $guardado = $usuario->Guardar();
                            if($guardado){
-                               echo "Agregado correctamente";
+                               
                            }
                         }else{
                             $Errores = Usuario::getError();
