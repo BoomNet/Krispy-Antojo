@@ -17,6 +17,29 @@ body{
 input:focus{
   outline: none;  
 }
+fieldset {
+  display: block;
+  margin-inline-start: 2px;
+  margin-inline-end: 2px;
+  padding-block-start: 0.35em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  min-inline-size: min-content;
+  border-width: 2px;
+  border-style: groove;
+  border-color: threedface;
+  border-image: initial;
+}
+legend {
+  display: block;
+  padding-inline-start: 2px;
+  padding-inline-end: 2px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+}
   
 .button {
     display: inline-block;
@@ -106,10 +129,11 @@ input:focus{
 }
 .sidebar .logo-details .logo_name{
   color: #fff;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
   opacity: 0;
   transition: all 0.5s ease;
+  margin-left: 13px;
 }
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name{
@@ -118,7 +142,7 @@ input:focus{
 .sidebar .logo-details #btn{
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 10px;
   transform: translateY(-50%);
   font-size: 22px;
   transition: all 0.4s ease;
@@ -324,4 +348,20 @@ input:focus{
   .sidebar li .tooltip{
     display: none;
   }
+}
+.logout{
+  cursor: pointer
+}
+.activo{
+  display: block;
+}
+.ocultar{
+  display: none !important;
+}
+.logo_krispy{
+  margin: 0 auto;
+  display: block;
+  max-width: 20rem;
+  opacity: 50%;
+  margin-top: 5rem;
 }
