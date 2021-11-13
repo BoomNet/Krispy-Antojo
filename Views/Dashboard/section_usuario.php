@@ -1,4 +1,4 @@
-<div class="modal fade" id="agg_usuario_modal" data-bs-backdrop="static" tabindex="-1">
+<!-- <div class="modal fade" id="agg_usuario_modal" data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -23,7 +23,7 @@
         <?php endforeach;?>
       <?php endif;?>
       <form class="row " action="/Dashboard/dashboard?View=2" method="POST">
-          <!-- CLAVE-ROL -->
+          <!-- CLAVE-ROL --
           <div class="col-12 d-flex px-4">
             <div class="col-12 col-lg-2">
               <select class="form-select" name="usuario[cverol_usuario]">
@@ -35,7 +35,7 @@
               </select>
             </div>
           </div>
-          <!-- NOMBRE-APELLIDOS -->
+          <!-- NOMBRE-APELLIDOS --
           <div class="col-12 d-lg-flex">
             <div class="col-12 col-lg-4 p-1 p-lg-3">
               <label class="">Nombre</label>
@@ -50,7 +50,7 @@
               <input class="form-ctrl" name="usuario[apellidoma_usuario]" type="text" value=<?php echo $usuario->apellidoma_usuario;?>>
             </div>
           </div>
-          <!-- USUARIO-CORREO -->
+          <!-- USUARIO-CORREO --
           <div class="col-12 d-lg-flex">
             <div class="col-12 col-lg-4 p-1 p-lg-3">
               <label class="">Nombre de Usuario</label>
@@ -65,7 +65,7 @@
               <input class="form-ctrl" name="usuario[telefono_usuario]" type="text" value=<?php echo $usuario->usuario_usuario;?>>
             </div>
           </div>
-          <!-- CORREO -->
+          <!-- CORREO --
           <div class="col-12 d-lg-flex">
             <div class="col-12 col-lg-6 p-1 p-lg-3">
               <label class="">Contraseña</label>
@@ -81,6 +81,25 @@
       <div class="modal-footer">
         <input class="btn btn-primary" type="submit" value="Registrar">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>  -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>
