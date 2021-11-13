@@ -1,11 +1,14 @@
 <?php 
     namespace Model;
 
-    class ActiveRecord{
+use Dotenv\Parser\Value;
+
+class ActiveRecord{
         //BASE DE DATOS
         protected static $db;
         protected static $columnaDB = [];
         protected static $Tabla = '';
+        protected static $cve = '';
         //ERRORES
         protected static $Errores = [];
         
@@ -15,30 +18,26 @@
         }
 
         public function Guardar(){
+            $Resultado = '';
             if(!is_null($this->id)){
                 //Actaulizar el contenido
-                $this->Actualizar();
+                $Resultado = $this->Actualizar();
             }else{
                 //Crear un nuevo valor
-                $this->Crear();
+                $Resultado = $this->Crear();
             }
+            return $Resultado;
         }
 
         public function Crear(){
             $Atributos = $this->SanitizarDatos();
-
             $InsertarFormulario = " INSERT INTO " . static::$Tabla . " (";
             $InsertarFormulario .= join(', ', array_keys($Atributos));
             $InsertarFormulario .= ") VALUES ('";
             $InsertarFormulario .= join("', '", array_values($Atributos));
             $InsertarFormulario .= "');";
             $Resultado = self::$db->query($InsertarFormulario);
-
-            if($Resultado){
-                //Redireccionamos al Usuario
-                //Solo se puede utilizar si no hay HTML previo
-                header('Location: /admin?resultado=1');
-            }
+            return $Resultado;
         }   
 
         public function Actualizar(){
@@ -79,6 +78,7 @@
             $Atributos = $this->Atributos();
             $Sanitizado = [];
             foreach($Atributos as $key => $value){
+                if($value == null) continue;
                 $Sanitizado[$key] = self::$db->escape_string($value);
             }
             return $Sanitizado;

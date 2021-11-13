@@ -3,14 +3,15 @@
 
     class Rol extends ActiveRecord{
         public static $Tabla = "rol";
-        public static $ColumnaDB = ['cve_rol', 'rol'];
+        public static $ColumnaDB = ['id', 'rol'];
 
-        public $cve_rol;
+        public $id;
         public $rol;
 
         public function __construct($args = [])
         {
-            $this->rol = $args['rol'];
+            $this->id = $args['id'] ?? null;
+            $this->rol = $args['rol'] ?? '';
         }
 
         public function validarRol(){

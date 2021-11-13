@@ -3,7 +3,7 @@
 
     class Producto extends ActiveRecord{
         public static $Tabla = "producto";
-        public static $ColumnaDB = ['cve_producto', 'nombre_producto', 'descripcion_producto', 'stock_producto', 'precio_producto', 'cvemarca_producto'];
+        public static $ColumnaDB = ['id', 'nombre_producto', 'descripcion_producto', 'stock_producto', 'precio_producto', 'cvemarca_producto'];
 
         public $nombre_producto;
         public $descripcion_producto;
