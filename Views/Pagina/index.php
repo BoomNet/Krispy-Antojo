@@ -30,9 +30,6 @@
                         <input type="password" id="password" class="form-ctrl" placeholder="Contraseña" name="contrasenia_usuario">
                     </div>
                     <button type="submit" class="w-75 button btn-lg btn-rosa rounded-pill text-center my-4">INICIAR SESION</button>
-                    <div  class="bd-highligh pt-5">
-                        <p class="form-text pt-5">¿No tienes una cuenta? <a href="/Pagina/formulario-crear" class="text-decoration-none">Registrate</a> </p>
-                    </div>
                 </form>
             </div>
         </div>

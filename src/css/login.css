@@ -329,12 +329,6 @@ input:focus{
 .logout{
   cursor: pointer
 }
-.activo{
-  display: block;
-}
-.ocultar{
-  display: none !important;
-}
 .logo_krispy{
   margin: 0 auto;
   display: block;

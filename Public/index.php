@@ -10,10 +10,11 @@
     //LOGIN AREA
     $Router->get('/', [paginaControllers::class, 'index']);
     $Router->post('/', [paginaControllers::class, 'login']);
-    $Router->get('/Pagina/formulario-crear', [usuarioControllers::class, 'crear']);
 
     //DASHBOARD AREA
     $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'dash']);
-
+    $Router->get('/Dashboard/dashboard', [usuarioControllers::class, 'crear']);
+    $Router->post('/Dashboard/dashboard', [usuarioControllers::class, 'crear']);
+    
     $Router->ComprobarRutas();
 ?>
