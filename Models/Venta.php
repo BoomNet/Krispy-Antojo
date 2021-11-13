@@ -3,9 +3,9 @@
 
     class Venta extends ActiveRecord{
         public static $Tabla = "venta";
-        public static $ColumnaDB = ['cve_venta', 'feha_venta', 'cveusuario_venta', 'hora_venta', 'total_venta', 'cveproducto_venta', 'cantidad_venta'];
+        public static $ColumnaDB = ['id', 'feha_venta', 'cveusuario_venta', 'hora_venta', 'total_venta', 'cveproducto_venta', 'cantidad_venta'];
 
-        public $cve_venta;
+        public $id;
         public $fecha_venta;
         public $cveusuario_venta;
         public $hora_venta;

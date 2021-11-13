@@ -2,6 +2,7 @@
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
+
 const NavList = document.querySelector('#Navegacion');
 const SectionMain = document.querySelector('.section-main');
 const ViewsNav = ['usuario', 'roles', 'productos', 'gastos', 'ventas'];
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar.classList.toggle("open");
     menuBtnChange();
   });
+
   NavList.addEventListener('click', ChangeView);
 });
 
@@ -26,6 +28,7 @@ function menuBtnChange() {
    closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
  }
 }
+
 function ChangeView(e){
   e.preventDefault();
   console.log(SectionMain.childNodes);

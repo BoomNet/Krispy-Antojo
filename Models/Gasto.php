@@ -3,9 +3,9 @@
 
     class Gasto extends ActiveRecord{
         protected static $Tabla = "gasto";
-        protected static $ColumnaDB = ['cve_gasto', 'descripcion_gasto', 'cantidad_gasto', 'fecha_gasto', 'cveusuario_gasto'];
+        protected static $ColumnaDB = ['id', 'descripcion_gasto', 'cantidad_gasto', 'fecha_gasto', 'cveusuario_gasto'];
 
-        public $cve_gasto;
+        public $id;
         public $descripcion_gasto;
         public $cantidad_gasto;
         public $fecha_gasto;

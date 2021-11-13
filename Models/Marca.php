@@ -3,9 +3,9 @@
 
     class Marca extends ActiveRecord{
         public static $Tabla = "gasto";
-        public static $ColumnaDB = ['cve_marca', 'nombre_marca', 'descripcion_marca'];
+        public static $ColumnaDB = ['id', 'nombre_marca', 'descripcion_marca'];
         
-        public $cve_marca;
+        public $id;
         public $nombre_marca;
         public $descripcion_marca;
 
