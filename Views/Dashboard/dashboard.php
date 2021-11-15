@@ -1,3 +1,9 @@
+<?php  
+    if(!isset($_SESSION)){
+      session_start();
+    }
+    $Autenticado = $_SESSION['login'] ?? false;  
+?>
 <div class="sidebar">
     <div class="logo-details">
         <a class="logo_name" href="/Dashboard/dashboard?View=1">Krispy Antojo</a>
@@ -52,16 +58,20 @@
        <span class="tooltip">Ventas</span>
      </li>
      <li class="profile">
-         <div class="profile-details">
-           <img src="https://avatars.githubusercontent.com/u/46621591?v=4" alt="profileImg">
-           <div class="name_job">
-             <div class="name">Test</div>
-             <div class="job">Web designer</div>
-           </div>
-         </div>
-         <div>
-           <i class='bx bx-log-out logout' id="log_out" ></i>
-         </div>
+       <?php if($Autenticado):?>
+          <a class="cerrar-sesion" id="logout">
+            <div class="profile-details">
+              <img src="https://avatars.githubusercontent.com/u/46621591?v=4" alt="profileImg">
+              <div class="name_job">
+                <div class="name">Test</div>
+                <div class="job">Web designer</div>
+              </div>
+            </div>
+            <div>
+              <i class='bx bx-log-out logout' id="log_out" ></i>
+            </div>
+        </a>   
+       <?php endif;?>
      </li>
     </ul>
   </div>
