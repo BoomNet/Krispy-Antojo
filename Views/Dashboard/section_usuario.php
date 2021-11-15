@@ -16,7 +16,7 @@
         </div>
       <?php endforeach;?>
     <?php endif;?>
-    <form class="row" action="/Dashboard/dashboard?View=2" method="POST">
+    <form class="row" action="/Dashboard/dashboard?View=3" method="POST">
       <!-- CLAVE-ROL -->
       <div class="col-12 d-flex px-4">
         <div class="col-12 col-lg-2">

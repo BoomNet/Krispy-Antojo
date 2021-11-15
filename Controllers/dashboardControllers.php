@@ -45,7 +45,7 @@
         public static function postViews(Router $router){
             $View = GetView('/Dashboard/dashboard');
             switch($View){
-                case 2:      
+                case 3:      
                     static::PostUser($router, $View);
                     break;
                 default:    
@@ -72,11 +72,11 @@
                             unset($usuario->confirm_contrasenia);
                             $usuario->fechamod_usuario = null;
                             $guardado = $usuario->Guardar();
-                            if($guardado){   
-                            }
-                            else{
-                                $Errores = Usuario::getError();
-                            }
+                           if($guardado){
+                               header('Location: /Dashboard/dashboard?View=2');
+                           }
+                        }else{
+                            $Errores = Usuario::getError();
                         }
                     }
                 }
@@ -86,7 +86,7 @@
                 'Errores' => $Errores,
                 'Rol' => $Rol,
                 'View' => $View
-            ]);   
+            ]);
         }
     }
     
