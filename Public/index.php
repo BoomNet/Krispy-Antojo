@@ -12,8 +12,7 @@
     $Router->post('/', [loginControllers::class, 'login']);
 
     //DASHBOARD AREA
-    $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'dash']);
-    $Router->get('/Dashboard/dashboard', [usuarioControllers::class, 'crear']);
+    $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'getViews']);
     $Router->post('/Dashboard/dashboard', [usuarioControllers::class, 'crear']);
     
     $Router->ComprobarRutas();
