@@ -17,7 +17,6 @@
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-
        <a href="/Dashboard/dashboard?View=2">
          <i class='bx bx-user usuario' ></i>
          <span class="links_name">Usuario</span>
