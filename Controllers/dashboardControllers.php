@@ -23,8 +23,6 @@
                 case 4:
                     static::getIdUser($router, $View);
                     break;
-                case 5:
-                    break;
                 case 6; 
                     break;
                 default: 
@@ -40,6 +38,9 @@
                     break;
                 case 4:
                     static::getIdUser($router, $View);
+                    break;
+                case 5: 
+                    static::Eliminar();
                     break;
                 default:    
                     break;
@@ -59,11 +60,13 @@
             $usuario = new Usuario;
             $Rol = Rol::all();
             $Errores = Usuario::getError();
+            $ChangePass = true;
             $router->render('/Dashboard/dashboard',[
                 'usuario' => $usuario,
                 'Errores' => $Errores,
                 'Rol' => $Rol,
-                'View' => $View
+                'View' => $View,
+                'ChangePass' => $ChangePass
             ]);
         }
         public static function getIdUser($router, $View){
@@ -71,7 +74,7 @@
             $usuario = Usuario::find($id);
             $Errores = Usuario::getError();
             $Rol = Rol::all();
-           
+            $ChangePass = false;
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $args = $_POST['usuario'];
                 $usuario->Sincronizar($args);
@@ -88,7 +91,8 @@
                 'usuario' => $usuario,
                 'Errores' => $Errores,
                 'Rol' => $Rol,
-                'id' => $id
+                'id' => $id, 
+                'ChangePass' => $ChangePass
             ]);
         }
         
@@ -124,6 +128,18 @@
                 'Rol' => $Rol,
                 'View' => $View
             ]);
+        }
+
+        public static function Eliminar(){
+            $id = Validar();
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            if($id){
+                $usuario = Usuario::find($id);
+                $Resultado = $usuario->eliminar();
+                if($Resultado){
+                    header('Location: /Dashboard/dashboard?View=2');
+                }
+            }
         }
     }
     
