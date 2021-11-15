@@ -1,6 +1,6 @@
 <div class="sidebar">
     <div class="logo-details">
-        <div class="logo_name">Krispy Antojo</div>
+        <a class="logo_name" href="/Dashboard/dashboard?View=1">Krispy Antojo</a>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list" id="Navegacion">
@@ -17,7 +17,6 @@
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-
        <a href="/Dashboard/dashboard?View=2">
          <i class='bx bx-user usuario' ></i>
          <span class="links_name">Usuario</span>

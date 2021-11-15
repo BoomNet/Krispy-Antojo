@@ -1,8 +1,6 @@
 <?php 
     namespace Controllers;
-
-use Exception;
-use Model\Usuario;
+    use Model\Usuario;
     use Model\Rol;
     use MVC\Router;
 
