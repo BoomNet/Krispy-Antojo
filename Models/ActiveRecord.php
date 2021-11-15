@@ -52,17 +52,13 @@ class ActiveRecord{
             $Query .= " LIMIT 1";
             
             $Resultado = self::$db->query($Query);
-            if($Resultado){
-                header('Location: /admin?resultado=2');
-            }
+            return $Resultado;
         }
 
         public function Eliminar(){
             $Query = "DELETE FROM " . static::$Tabla . " WHERE id=" . self::$db->escape_string($this->id) . " LIMIT 1";
             $Resultado = self::$db->query($Query);
-            if($Resultado){
-                header('Location: /admin?resultado=3');
-            }
+            return $Resultado;
         }
 
         // Identificar y unir los atributos de la BD o Mapea las columnas con el objeto en memoria que tenemos
@@ -106,7 +102,7 @@ class ActiveRecord{
             return $Resultado;
         }
         public static function find($id){
-            $query = "SELECT * FROM " . static::$Tabla . " WHERE id=${id}";
+            $query = "SELECT * FROM " . static::$Tabla . " WHERE id=" . $id;
             $Resultado = self::consultarSQL($query);
             return $Resultado[0];
         }

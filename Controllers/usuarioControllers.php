@@ -41,7 +41,7 @@
             ]);
         }
         public static function actualizar(Router $router){
-            $id = ValidarORedireccionar('/admin');
+            $id = Validar('/admin');
             $Errores = Usuario::getError();
             $usuario = Usuario::find($id);
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
