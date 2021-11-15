@@ -51,5 +51,5 @@ function Alert(e){
     ) {
       window.location = window.location;
     }
-  })
+  });
 }
