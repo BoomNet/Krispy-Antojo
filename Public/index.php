@@ -14,7 +14,7 @@
 
     //DASHBOARD AREA
     $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'getViews']);
-    $Router->post('/Dashboard/dashboard', [usuarioControllers::class, 'postViews']);
+    $Router->post('/Dashboard/dashboard', [dashboardControllers::class, 'postViews']);
     
     $Router->ComprobarRutas();
 ?>
