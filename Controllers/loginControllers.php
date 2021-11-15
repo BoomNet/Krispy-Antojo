@@ -2,10 +2,10 @@
     namespace Controllers;
     use MVC\Router;
     use Model\Usuario;
-    class paginaControllers{
+    class loginControllers{
         public static function index(Router $router){
             $Errores = Usuario::getError();
-            $router->render('/Pagina/index', [
+            $router->render('/Auth/login', [
                 'Errores' => $Errores
             ]);
         }
@@ -31,7 +31,7 @@
                     }
                 }
             }
-            $router->render('/Pagina/index', [
+            $router->render('/Auth/login', [
                 'Errores' => $Errores
             ]);
         }
