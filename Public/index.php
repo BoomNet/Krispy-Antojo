@@ -1,15 +1,15 @@
 <?php 
     require_once __DIR__ . "/../includes/app.php";
     use MVC\Router;    
-    use Controllers\paginaControllers;
+    use Controllers\loginControllers;
     use Controllers\usuarioControllers;
     use Controllers\dashboardControllers;
 
     $Router = new Router();
 
     //LOGIN AREA
-    $Router->get('/', [paginaControllers::class, 'index']);
-    $Router->post('/', [paginaControllers::class, 'login']);
+    $Router->get('/', [loginControllers::class, 'index']);
+    $Router->post('/', [loginControllers::class, 'login']);
 
     //DASHBOARD AREA
     $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'dash']);
