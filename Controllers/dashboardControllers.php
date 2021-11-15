@@ -15,6 +15,14 @@
                     break;
                 case 2: 
                     $usuario = new Usuario;
+                    $allUsers = $usuario->AllUser();
+                    $router->render('/Dashboard/dashboard',[
+                        'allUsers' => $allUsers,
+                        'View' => $View
+                    ]);
+                    break;
+                case 3: 
+                    $usuario = new Usuario;
                     $Rol = Rol::all();
                     $Errores = Usuario::getError();
                     $router->render('/Dashboard/dashboard',[
@@ -23,8 +31,6 @@
                         'Rol' => $Rol,
                         'View' => $View
                     ]);
-                    break;
-                case 3: 
                     break;
                 case 4:
                     break;

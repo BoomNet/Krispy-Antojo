@@ -344,16 +344,6 @@ a{
     display: none;
   }
 }
-/* .logout{
-  cursor: pointer
-}
-
-.activo{
-  display: block;
-}
-.ocultar{
-  display: none !important;
-} */
 .logo_krispy{
   margin: 0 auto;
   display: block;
@@ -364,4 +354,8 @@ a{
 }
 .cerrar-sesion{
   background-color: #C51E4A !important;
+}
+/*      USUARIOS      */
+.acciones{
+  margin-bottom: 1rem;
 }

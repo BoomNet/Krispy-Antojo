@@ -132,5 +132,14 @@ use MVC\Router;
             public function PasswordHash(){
                 
             }
+            public function AllUser(){
+                $query = "SELECT usuario.id, nombre_usuario, apellidopa_usuario, apellidoma_usuario, correo_usuario, telefono_usuario, usuario_usuario, rol FROM usuario INNER JOIN rol on usuario.cverol_usuario = rol.id";
+                $Resultado = self::$db->query($query);
+                $All = [];
+                while($row = $Resultado->fetch_assoc()){
+                    $All[] = $row;
+                }
+                return $All;
+            }
         }
-?>
+?> 

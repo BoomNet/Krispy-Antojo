@@ -76,7 +76,7 @@
       <div class="row ">
       <div class="col-12 text-center p-3">
         <input class="btn btn-primary" type="submit" value="Registrar">
-        <button class="btn btn-secondary" type="button">Cancelar</button>
+        <a class="btn btn-secondary" type="button" href="/Dashboard/dashboard?View=2">Volvér</a>
       </div>
     </div>
     </form>

@@ -83,8 +83,10 @@
           include __DIR__ . "/fondo_dashboard.php";
           break;
         case 2:
-          include __DIR__ . "/section_usuario.php";
+          include __DIR__ . "/table_usuario.php";
           break;
+        case 3:
+          include __DIR__ . "/section_usuario.php";
         default:
           break;
       }
