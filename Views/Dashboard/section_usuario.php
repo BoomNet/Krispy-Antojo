@@ -62,16 +62,18 @@
         </div>
       </div>
       <!-- CORREO -->
-      <div class="col-12 d-lg-flex">
-        <div class="col-12 col-lg-6 p-1 p-lg-3">
-          <label class="form-label">Contraseña</label>
-          <input class="form-control" name="usuario[contrasenia_usuario]" type="password" value=<?php echo $usuario->contrasenia_usuario;?>>
+      <?php if($ChangePass == true):?>
+        <div class="col-12 d-lg-flex">
+          <div class="col-12 col-lg-6 p-1 p-lg-3">
+            <label class="form-label">Contraseña</label>
+            <input class="form-control" name="usuario[contrasenia_usuario]" type="password">
+          </div>
+          <div class="col-12 col-lg-6 p-1 p-lg-3">
+            <label class="form-label">Confirmar Contraseña</label>
+            <input class="form-control" name="usuario[confirm_contrasenia]" type="password">
+          </div>
         </div>
-        <div class="col-12 col-lg-6 p-1 p-lg-3">
-          <label class="form-label">Confirmar Contraseña</label>
-          <input class="form-control" name="usuario[confirm_contrasenia]" type="password" value=<?php echo $usuario->contrasenia_usuario;?>>
-        </div>
-      </div>
+      <?php endif;?>
       <div class="row ">
       <div class="col-12 text-center p-3">
         <input class="btn btn-primary" type="submit" value="Registrar">
