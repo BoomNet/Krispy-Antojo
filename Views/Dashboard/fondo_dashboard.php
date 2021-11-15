@@ -1,1 +1,1 @@
-<img src="/build/img/Fondo.png" alt="Logo Krispy Antojo" class="logo_krispy">
+<img src="/build/img/Fondo.png" alt="Logo Krispy Antojo" class="logo_krispy my-5">
