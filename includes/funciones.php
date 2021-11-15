@@ -38,12 +38,14 @@
         return $mensaje;
     }
 
-    function ValidarORedireccionar($url){
-        $idPropiedad = intval($_GET['id']);
+    function Validar(){
+        $queries = array();
+        parse_str($_SERVER['QUERY_STRING'], $queries);
+        $idPropiedad = intval($queries['id']);
         $id = filter_var($idPropiedad, FILTER_VALIDATE_INT);
-        if(!$id){
-            header("Location: ${url}");
-        }
+        /* if(!$id){
+            header('Location: /Dashboard/dashboard?View=1');
+        } */
         return $id;
     }
     function GetView($url){
