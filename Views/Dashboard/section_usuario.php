@@ -1,5 +1,4 @@
 <div class="bg-light rounded m-5 usuario">
-    <h1 class="text-center">Usuario</h1>
     <?php if($Errores):?>
       <?php foreach($Errores as $Error):?>
         <div class="text-start alert alert-danger d-flex bd-highlight " role="alert">
@@ -16,14 +15,14 @@
         </div>
       <?php endforeach;?>
     <?php endif;?>
-    <form class="row" action="/Dashboard/dashboard?View=3" method="POST">
+    <form class="row" action="/Dashboard/dashboard?View=<?php echo $View;?><?php echo $id ? '&id=' . $id : ''?>" method="POST">
       <!-- CLAVE-ROL -->
       <div class="col-12 d-flex px-4">
         <div class="col-12 col-lg-2">
           <select class="form-select" name="usuario[cverol_usuario]">
             <option selected disabled>Seleccione Rol</option>
             <?php foreach($Rol as $rol):?>
-              <option <?php $usuario->cverol_usuario === $rol->id ? '' : 'selected';?>
+              <option <?php echo $usuario->cverol_usuario === $rol->id ? 'selected' : '';?>
                 value="<?php echo $rol->id;?>"><?php echo s($rol->rol);?></option>
             <?php endforeach;?>
           </select>
@@ -66,11 +65,11 @@
       <div class="col-12 d-lg-flex">
         <div class="col-12 col-lg-6 p-1 p-lg-3">
           <label class="form-label">Contraseña</label>
-          <input class="form-control" name="usuario[contrasenia_usuario]" type="password" >
+          <input class="form-control" name="usuario[contrasenia_usuario]" type="password" value=<?php echo $usuario->contrasenia_usuario;?>>
         </div>
         <div class="col-12 col-lg-6 p-1 p-lg-3">
           <label class="form-label">Confirmar Contraseña</label>
-          <input class="form-control" name="usuario[confirm_contrasenia]" type="password">
+          <input class="form-control" name="usuario[confirm_contrasenia]" type="password" value=<?php echo $usuario->contrasenia_usuario;?>>
         </div>
       </div>
       <div class="row ">

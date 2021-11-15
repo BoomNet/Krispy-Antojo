@@ -86,7 +86,17 @@
           include __DIR__ . "/table_usuario.php";
           break;
         case 3:
-          include __DIR__ . "/section_usuario.php";
+          ?>
+            <h1 class="text-center pt-5">Agregar Usuario</h1>
+          <?php
+            include __DIR__ . "/section_usuario.php";
+          break;
+        case 4:
+          ?>
+            <h1 class="text-center pt-5">Editar Usuario</h1>
+          <?php
+            include __DIR__ . "/section_usuario.php";
+          break;
         default:
           break;
       }
