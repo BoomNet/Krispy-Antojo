@@ -10,6 +10,7 @@
     //LOGIN AREA
     $Router->get('/', [loginControllers::class, 'index']);
     $Router->post('/', [loginControllers::class, 'login']);
+    $Router->get('/logout', [loginControllers::class, 'logout']);
 
     //DASHBOARD AREA
     $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'getViews']);
