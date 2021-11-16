@@ -37,7 +37,7 @@
        <span class="tooltip">Roles</span>
      </li>
      <li>
-       <a href="#">
+       <a href="/Dashboard/dashboard?View=5">
          <i class='bx bx-pie-chart-alt-2 productos' ></i>
          <span class="links_name">Productos</span>
        </a>
@@ -96,6 +96,15 @@
             <h1 class="text-center pt-5">Editar Usuario</h1>
           <?php
             include __DIR__ . "/section_usuario.php";
+          break;
+        case 5:
+          include __DIR__ . "/table_producto.php";
+          break;
+        case 6: 
+          ?>
+            <h1 class="text-center pt-5">Agregar Producto</h1>
+          <?php
+            include __DIR__ . "/section_producto.php";
           break;
         default:
           break;

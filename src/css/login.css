@@ -359,3 +359,15 @@ a{
 .acciones{
   margin-bottom: 1rem;
 }
+.acciones-edit{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+button.eliminar{
+  color: #0A58CA;
+}
+button.eliminar:hover{
+  color: #0b4eb3;
+}

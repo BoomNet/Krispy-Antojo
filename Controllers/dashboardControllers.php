@@ -2,6 +2,7 @@
     namespace Controllers;
     use Model\Usuario;
     use Model\Rol;
+    use Model\Producto;
     use MVC\Router;
     
     class dashboardControllers {
@@ -23,7 +24,19 @@
                 case 4:
                     static::getIdUser($router, $View);
                     break;
-                case 6; 
+                case 5: 
+                    $router->render('/Dashboard/dashboard', [
+                        'View' => $View
+                    ]);
+                    break;
+                case 6:
+                    $Errores = Producto::getError();
+                    $producto = new Producto;
+                    $router->render('/Dashboard/dashboard', [
+                        'View' => $View,
+                        'Errores' => $Errores, 
+                        'producto' => $producto
+                    ]);
                     break;
                 default: 
                     break;
@@ -39,9 +52,9 @@
                 case 4:
                     static::getIdUser($router, $View);
                     break;
-                case 5: 
-                    static::Eliminar();
-                    break;
+                case 6:
+                    static::postProducts($router, $View);
+                    break;        
                 default:    
                     break;
             }
@@ -99,6 +112,7 @@
         /* ******-----POST------****** */
         public static function PostUser($router, $View){
             $Rol = Rol::all();
+            $ChangePass = true;
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $usuario = new Usuario($_POST['usuario']);
                 $Errores = $usuario->ValidarUsuario();
@@ -126,20 +140,22 @@
                 'usuario' => $usuario,
                 'Errores' => $Errores,
                 'Rol' => $Rol,
-                'View' => $View
+                'View' => $View,
+                'ChangePass' => $ChangePass
             ]);
         }
-
-        public static function Eliminar(){
-            $id = Validar();
-            $id = filter_var($id, FILTER_VALIDATE_INT);
-            if($id){
-                $usuario = Usuario::find($id);
-                $Resultado = $usuario->eliminar();
-                if($Resultado){
-                    header('Location: /Dashboard/dashboard?View=2');
-                }
+        public static function postProducts($router, $View){
+            $Errores = Producto::getError();
+            $producto = new Producto;
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $producto = new Producto($_POST['producto']);
+                $Errores = $producto->validarProducto();
             }
+            $router->render('/Dashboard/dashboard',[
+                'View' => $View,
+                'Errores' => $Errores,
+                'producto' => $producto
+            ]);
         }
     }
     

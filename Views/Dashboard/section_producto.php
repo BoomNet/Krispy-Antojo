@@ -1,5 +1,4 @@
 <div class="bg-light rounded m-5 usuario">
-    <h1 class="text-center">Productos</h1>
     <?php if($Errores):?>
       <?php foreach($Errores as $Error):?>
         <div class="text-start alert alert-danger d-flex bd-highlight mx-5" role="alert">
@@ -16,7 +15,7 @@
         </div>
       <?php endforeach;?>
     <?php endif;?>
-    <form class="row" action="/Dashboard/dashboard?View=3" method="POST">
+    <form class="row" action="/Dashboard/dashboard?View=6" method="POST">
       <!-- NOMBRE-MARCA -->
       <div class="col-12 d-lg-flex">
           <div class="col-12 col-lg-6  p-1 p-lg-3">
@@ -62,7 +61,7 @@
         <div class="row ">
             <div class="col-12 text-center p-3">
                 <input class="btn btn-primary" type="submit" value="Registrar">
-                <a class="btn btn-secondary" type="button" href="/Dashboard/dashboard?View=4">Volver</a>
+                <a class="btn btn-secondary" type="button" href="/Dashboard/dashboard?View=5">Volver</a>
             </div>
         </div>
     </form>
