@@ -49,7 +49,7 @@ function Alert(e){
       /* Read more about handling dismissals below */
       result.dismiss === Swal.DismissReason.cancel
     ) {
-      window.location = window.location;
+      Swal.close();
     }
   })
 }
