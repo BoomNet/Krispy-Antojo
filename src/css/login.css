@@ -371,3 +371,6 @@ button.eliminar{
 button.eliminar:hover{
   color: #0b4eb3;
 }
+.swal2-cancel{
+  margin-right: 2rem;
+}

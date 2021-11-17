@@ -108,12 +108,6 @@ use MVC\Router;
             }
             public function comprobarPassword($Resultado){
                 $usuario = $Resultado->fetch_object();  
-                /* $Autenticado = false;
-                if($this->contrasenia_usuario === $usuario->contrasenia_usuario){
-                    $Autenticado = true;
-                }else{
-                    $Autenticado = false;
-                } */
                 $Autenticado = password_verify($this->contrasenia_usuario, $usuario->contrasenia_usuario);
                 if(!$Autenticado){
                     self::$Errores[] = 'La contraseña es incorrecta';
