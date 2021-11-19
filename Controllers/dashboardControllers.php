@@ -85,13 +85,15 @@
         public static function getIdUser($router, $View){
             $id = Validar();
             $usuario = Usuario::find($id);
+            unset($usuario->contrasenia_usuario);
+            unset($usuario->confirm_contrasenia);
             $Errores = Usuario::getError();
             $Rol = Rol::all();
             $ChangePass = false;
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $args = $_POST['usuario'];
                 $usuario->Sincronizar($args);
-                $Errores = $usuario->ValidarUsuario();
+                $Errores = $usuario->ValidarUsuario(true);
                 if(empty($Errores)){
                     $guardado = $usuario->Guardar();
                     if($guardado){
@@ -115,7 +117,7 @@
             $ChangePass = true;
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $usuario = new Usuario($_POST['usuario']);
-                $Errores = $usuario->ValidarUsuario();
+                $Errores = $usuario->ValidarUsuario(false);
                 if(empty($Errores)){
                     $Resultado = $usuario->existeUsuario();
                     if(!$Resultado){

@@ -36,7 +36,7 @@ use MVC\Router;
                 $this->cverol_usuario = $args['cverol_usuario'] ?? null;
             }
             
-            public function ValidarUsuario(){
+            public function ValidarUsuario($validar){
                 if(!$this->nombre_usuario){
                     self::$Errores[] = "El nombre es obligatorio";
                 }
@@ -52,8 +52,10 @@ use MVC\Router;
                 if(!$this->usuario_usuario){
                     self::$Errores[] = "El nombre de usuario es obligatorio";
                 }
-                if(!$this->contrasenia_usuario){
-                    self::$Errores[] = "La contraseña es obligatorio";
+                if(!$validar){
+                    if(!$this->contrasenia_usuario){
+                        self::$Errores[] = "La contraseña es obligatorio";
+                    }
                 }
                 if(!$this->cverol_usuario){
                     self::$Errores[] = "El rol es obligatorio";

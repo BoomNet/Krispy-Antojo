@@ -1,0 +1,18 @@
+.buscador{
+    justify-content: space-between;
+    align-items: center;
+}
+.buscador input{
+    margin-right: 5rem;
+}
+.buscar{
+    position: relative;
+}
+.buscar a{
+    position: absolute;
+    top: 2px;
+    right: 6rem;
+    width: 1.5rem;
+    height: 1rem;
+    color: rgb(177, 140, 147);
+}

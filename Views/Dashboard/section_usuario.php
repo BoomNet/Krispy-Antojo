@@ -15,7 +15,7 @@
         </div>
       <?php endforeach;?>
     <?php endif;?>
-    <form class="row" action="/Dashboard/dashboard?View=<?php echo $View;?><?php echo $id ? '&id=' . $id : ''?>" method="POST">
+    <form class="row" action="/Dashboard/dashboard?View=<?php echo $View;?><?php echo isset($id) ? '&id=' . $id : ''?>" method="POST">
       <!-- CLAVE-ROL -->
       <div class="col-12 d-flex px-4">
         <div class="col-12 col-lg-2">
