@@ -62,10 +62,7 @@
 
         /* ******-----GET------****** */
         public static function GetUsers($router, $View){
-            $usuario = new Usuario;
-            $allUsers = $usuario->AllUser();
             $router->render('/Dashboard/dashboard',[
-                'allUsers' => $allUsers,
                 'View' => $View
             ]);
         }
