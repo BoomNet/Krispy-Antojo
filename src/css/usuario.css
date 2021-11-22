@@ -2,17 +2,19 @@
     justify-content: space-between;
     align-items: center;
 }
-.buscador input{
-    margin-right: 5rem;
-}
 .buscar{
-    position: relative;
+    margin-right: 4rem;
 }
-.buscar a{
-    position: absolute;
-    top: 2px;
-    right: 6rem;
-    width: 1.5rem;
-    height: 1rem;
-    color: rgb(177, 140, 147);
+.buscar input[type=submit]{
+    background-color: rgb(173, 74, 132);
+    border: none;
+    border-radius: 1rem;
+    width: 6rem;
+    padding: .5rem 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+}
+.buscar input[type=submit]:hover{
+    background-color: rgb(138, 57, 104);
 }

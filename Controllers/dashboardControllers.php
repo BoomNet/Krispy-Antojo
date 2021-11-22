@@ -46,6 +46,9 @@
         public static function postViews(Router $router){
             $View = GetView('/Dashboard/dashboard');
             switch($View){
+                case 2: 
+                    static::searchUser($router, $View);
+                    break;
                 case 3:      
                     static::PostUser($router, $View);
                     break;
@@ -62,8 +65,11 @@
 
         /* ******-----GET------****** */
         public static function GetUsers($router, $View){
+            $usuario = new Usuario;
+            $allUsers = $usuario->AllUser();
             $router->render('/Dashboard/dashboard',[
-                'View' => $View
+                'View' => $View,
+                'allUsers' => $allUsers
             ]);
         }
         public static function getInfoUser($router, $View){
@@ -109,6 +115,14 @@
         }
         
         /* ******-----POST------****** */
+        public static function searchUser($router, $View){
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                Debuguear($_POST);
+            }
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View
+            ]);
+        }
         public static function PostUser($router, $View){
             $Rol = Rol::all();
             $ChangePass = true;

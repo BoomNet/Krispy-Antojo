@@ -120,7 +120,7 @@ use MVC\Router;
 
             public function autenticar(){
                 session_start();
-                $_SESSION['usuario'] = $this->correo_usuario;
+                $_SESSION['usuario'] = $this->nombre_usuario;
                 $_SESSION['login'] = true;
                 header('Location: /Dashboard/dashboard?View=1');
             }
@@ -129,7 +129,7 @@ use MVC\Router;
                 
             }
             public function AllUser(){
-                $query = "SELECT usuario.id, nombre_usuario, apellidopa_usuario, apellidoma_usuario, correo_usuario, telefono_usuario, usuario_usuario, rol FROM usuario INNER JOIN rol on usuario.cverol_usuario = rol.id";
+                $query = "SELECT usuario.id, nombre_usuario, apellidopa_usuario, apellidoma_usuario, usuario_usuario, rol FROM usuario INNER JOIN rol on usuario.cverol_usuario = rol.id ORDER BY usuario.id ASC;";
                 $Resultado = self::$db->query($query);
                 $All = [];
                 while($row = $Resultado->fetch_assoc()){
