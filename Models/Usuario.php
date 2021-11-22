@@ -36,7 +36,7 @@ use MVC\Router;
                 $this->cverol_usuario = $args['cverol_usuario'] ?? null;
             }
             
-            public function ValidarUsuario(){
+            public function ValidarUsuario($validar){
                 if(!$this->nombre_usuario){
                     self::$Errores[] = "El nombre es obligatorio";
                 }
@@ -52,8 +52,10 @@ use MVC\Router;
                 if(!$this->usuario_usuario){
                     self::$Errores[] = "El nombre de usuario es obligatorio";
                 }
-                if(!$this->contrasenia_usuario){
-                    self::$Errores[] = "La contraseña es obligatorio";
+                if(!$validar){
+                    if(!$this->contrasenia_usuario){
+                        self::$Errores[] = "La contraseña es obligatorio";
+                    }
                 }
                 if(!$this->cverol_usuario){
                     self::$Errores[] = "El rol es obligatorio";
@@ -118,7 +120,7 @@ use MVC\Router;
 
             public function autenticar(){
                 session_start();
-                $_SESSION['usuario'] = $this->correo_usuario;
+                $_SESSION['usuario'] = $this->nombre_usuario;
                 $_SESSION['login'] = true;
                 header('Location: /Dashboard/dashboard?View=1');
             }
@@ -127,7 +129,17 @@ use MVC\Router;
                 
             }
             public function AllUser(){
-                $query = "SELECT usuario.id, nombre_usuario, apellidopa_usuario, apellidoma_usuario, correo_usuario, telefono_usuario, usuario_usuario, rol FROM usuario INNER JOIN rol on usuario.cverol_usuario = rol.id";
+                $query = "SELECT usuario.id, nombre_usuario, apellidopa_usuario, apellidoma_usuario, usuario_usuario, rol FROM usuario INNER JOIN rol on usuario.cverol_usuario = rol.id ORDER BY usuario.id ASC;";
+                $Resultado = self::$db->query($query);
+                $All = [];
+                while($row = $Resultado->fetch_assoc()){
+                    $All[] = $row;
+                }
+                return $All;
+            }
+
+            public function searchUsers($InputUser){
+                $query = "SELECT usuario.id, nombre_usuario, apellidopa_usuario, apellidoma_usuario, usuario_usuario, rol FROM usuario INNER JOIN rol on usuario.cverol_usuario = rol.id WHERE usuario.nombre_usuario LIKE '%" . $InputUser . "%' OR apellidopa_usuario LIKE '%" . $InputUser. "' OR apellidoma_usuario LIKE '%" . $InputUser . "%' OR usuario_usuario LIKE '%" . $InputUser . "%' OR rol.rol LIKE '%" . $InputUser ."%';";
                 $Resultado = self::$db->query($query);
                 $All = [];
                 while($row = $Resultado->fetch_assoc()){

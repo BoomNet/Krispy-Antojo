@@ -50,7 +50,6 @@ class ActiveRecord{
             $Query .= join(', ', $Valores);
             $Query .= " WHERE id='" . self::$db->escape_string($this->id) . "'";
             $Query .= " LIMIT 1";
-            
             $Resultado = self::$db->query($Query);
             return $Resultado;
         }

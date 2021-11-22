@@ -1,0 +1,20 @@
+.buscador{
+    justify-content: space-between;
+    align-items: center;
+}
+.buscar{
+    margin-right: 4rem;
+}
+.buscar input[type=submit]{
+    background-color: rgb(173, 74, 132);
+    border: none;
+    border-radius: 1rem;
+    width: 6rem;
+    padding: .5rem 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+}
+.buscar input[type=submit]:hover{
+    background-color: rgb(138, 57, 104);
+}

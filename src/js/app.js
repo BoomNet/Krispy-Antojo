@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBtnChange();
   });
   Logout.addEventListener('click', Alert);
-
 });
 
 /* ***FUNCIONES*** */
@@ -26,6 +25,7 @@ function menuBtnChange() {
  }
 }
 
+/* ***SWEET ALERT*** */
 function Alert(e){
   e.preventDefault();
   const swalWithBootstrapButtons = Swal.mixin({

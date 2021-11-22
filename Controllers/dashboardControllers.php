@@ -46,6 +46,9 @@
         public static function postViews(Router $router){
             $View = GetView('/Dashboard/dashboard');
             switch($View){
+                case 2: 
+                    static::searchUser($router, $View);
+                    break;
                 case 3:      
                     static::PostUser($router, $View);
                     break;
@@ -65,8 +68,8 @@
             $usuario = new Usuario;
             $allUsers = $usuario->AllUser();
             $router->render('/Dashboard/dashboard',[
-                'allUsers' => $allUsers,
-                'View' => $View
+                'View' => $View,
+                'allUsers' => $allUsers
             ]);
         }
         public static function getInfoUser($router, $View){
@@ -85,13 +88,15 @@
         public static function getIdUser($router, $View){
             $id = Validar();
             $usuario = Usuario::find($id);
+            unset($usuario->contrasenia_usuario);
+            unset($usuario->confirm_contrasenia);
             $Errores = Usuario::getError();
             $Rol = Rol::all();
             $ChangePass = false;
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $args = $_POST['usuario'];
                 $usuario->Sincronizar($args);
-                $Errores = $usuario->ValidarUsuario();
+                $Errores = $usuario->ValidarUsuario(true);
                 if(empty($Errores)){
                     $guardado = $usuario->Guardar();
                     if($guardado){
@@ -110,12 +115,23 @@
         }
         
         /* ******-----POST------****** */
+        public static function searchUser($router, $View){
+            $usuario = new Usuario;
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $Busqueda = $_POST['busqueda'];
+                $allUsers = $usuario->searchUsers($Busqueda);
+            }
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View,
+                'allUsers' => $allUsers
+            ]);
+        }
         public static function PostUser($router, $View){
             $Rol = Rol::all();
             $ChangePass = true;
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $usuario = new Usuario($_POST['usuario']);
-                $Errores = $usuario->ValidarUsuario();
+                $Errores = $usuario->ValidarUsuario(false);
                 if(empty($Errores)){
                     $Resultado = $usuario->existeUsuario();
                     if(!$Resultado){
