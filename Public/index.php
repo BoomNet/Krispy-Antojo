@@ -18,7 +18,5 @@
     $Router->post('/Dashboard/dashboard', [dashboardControllers::class, 'postViews']);
     $Router->post('/Dashboard/eliminar', [usuarioControllers::class, 'Eliminar']);
 
-    //API
-    $Router->get('/Api/usuario', [APIDashboard::class, 'getUser']);
     $Router->ComprobarRutas();
 ?>
