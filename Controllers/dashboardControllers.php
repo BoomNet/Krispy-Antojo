@@ -116,11 +116,14 @@
         
         /* ******-----POST------****** */
         public static function searchUser($router, $View){
+            $usuario = new Usuario;
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                Debuguear($_POST);
+                $Busqueda = $_POST['busqueda'];
+                $allUsers = $usuario->searchUsers($Busqueda);
             }
             $router->render('/Dashboard/dashboard', [
-                'View' => $View
+                'View' => $View,
+                'allUsers' => $allUsers
             ]);
         }
         public static function PostUser($router, $View){

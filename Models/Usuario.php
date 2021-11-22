@@ -137,5 +137,15 @@ use MVC\Router;
                 }
                 return $All;
             }
+
+            public function searchUsers($InputUser){
+                $query = "SELECT usuario.id, nombre_usuario, apellidopa_usuario, apellidoma_usuario, usuario_usuario, rol FROM usuario INNER JOIN rol on usuario.cverol_usuario = rol.id WHERE usuario.nombre_usuario LIKE '%" . $InputUser . "%' OR apellidopa_usuario LIKE '%" . $InputUser. "' OR apellidoma_usuario LIKE '%" . $InputUser . "%' OR usuario_usuario LIKE '%" . $InputUser . "%' OR rol.rol LIKE '%" . $InputUser ."%';";
+                $Resultado = self::$db->query($query);
+                $All = [];
+                while($row = $Resultado->fetch_assoc()){
+                    $All[] = $row;
+                }
+                return $All;
+            }
         }
 ?> 
