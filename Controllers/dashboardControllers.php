@@ -1,5 +1,7 @@
 <?php 
     namespace Controllers;
+
+    use Model\Marca;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
@@ -25,9 +27,7 @@
                     static::getIdUser($router, $View);
                     break;
                 case 5: 
-                    $router->render('/Dashboard/dashboard', [
-                        'View' => $View
-                    ]);
+                    static::getProducts($router, $View);
                     break;
                 case 6:
                     $Errores = Producto::getError();
@@ -37,6 +37,9 @@
                         'Errores' => $Errores, 
                         'producto' => $producto
                     ]);
+                    break;
+                case 7:
+                    static::getIdProducts($router, $View);
                     break;
                 default: 
                     break;
@@ -57,7 +60,10 @@
                     break;
                 case 6:
                     static::postProducts($router, $View);
-                    break;        
+                    break;    
+                case 7:
+                    static::getIdProducts($router, $View);
+                    break;    
                 default:    
                     break;
             }
@@ -111,6 +117,39 @@
                 'Rol' => $Rol,
                 'id' => $id, 
                 'ChangePass' => $ChangePass
+            ]);
+        }
+        public static function getProducts($router, $View){
+            $productos = new Producto;
+            $allProducts = $productos->allProducts();
+            $router->render('/Dashboard/dashboard', [
+                'allProducts' => $allProducts,
+                'View' => $View,
+                
+            ]);
+        }
+        public static function getIdProducts($router, $View){
+            $id = Validar();
+            $Marca = Marca::all();
+            $producto = Producto::find($id);
+            $Errores = Producto::getError();
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $args = $_POST['producto'];
+                $producto->Sincronizar($args);
+                $Errores = $producto->validarProducto();
+                if(empty($Errores)){
+                    $guardado = $producto->Guardar();
+                    if($guardado){
+                        header('Location: /Dashboard/dashboard?View=5');
+                    }
+                }
+            }
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View,
+                'Errores' => $Errores,
+                'producto' => $producto, 
+                'Marca' => $Marca, 
+                'id' => $id
             ]);
         }
         

@@ -2,8 +2,8 @@
     namespace Model;
 
     class Marca extends ActiveRecord{
-        public static $Tabla = "gasto";
-        public static $ColumnaDB = ['id', 'nombre_marca', 'descripcion_marca'];
+        public static $Tabla = "marca";
+        public static $columnaDB = ['id', 'nombre_marca', 'descripcion_marca'];
         
         public $id;
         public $nombre_marca;
@@ -11,8 +11,8 @@
 
         public function __construct($args = [])
         {
-            $this->nombre_marca = $args['nombre_marca'];
-            $this->descripcion_marca = $args['descripcion_marca'];
+            $this->nombre_marca = $args['nombre_marca'] ?? '';
+            $this->descripcion_marca = $args['descripcion_marca'] ?? '';
         }
 
         public function ValidarMarca(){
@@ -22,6 +22,7 @@
             if(!$this->descripcion_marca){
                 self::$Errores[] = "La descripción es obligatoria";
             }
+            return self::$Errores;
         }
     }
 ?>

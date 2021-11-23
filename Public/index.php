@@ -4,6 +4,7 @@
     use Controllers\loginControllers;
     use Controllers\usuarioControllers;
     use Controllers\dashboardControllers;
+    use Controllers\productoControllers;
     use Controllers\APIDashboard;
 
     $Router = new Router();
@@ -17,6 +18,7 @@
     $Router->get('/Dashboard/dashboard', [dashboardControllers::class, 'getViews']);
     $Router->post('/Dashboard/dashboard', [dashboardControllers::class, 'postViews']);
     $Router->post('/Dashboard/eliminar', [usuarioControllers::class, 'Eliminar']);
+    $Router->post('/Dashboard/eliminar-producto', [productoControllers::class, 'Eliminar']);
 
     $Router->ComprobarRutas();
 ?>

@@ -3,8 +3,9 @@
 
     class Producto extends ActiveRecord{
         public static $Tabla = "producto";
-        public static $ColumnaDB = ['id', 'nombre_producto', 'descripcion_producto', 'precioCompra_producto', 'precioVenta_producto', 'stock_producto', 'cvemarca_producto'];
-
+        public static $columnaDB = ['id', 'nombre_producto', 'descripcion_producto', 'precioCompra_producto', 'precioVenta_producto', 'stock_producto', 'cvemarca_producto'];
+        
+        public $id;
         public $nombre_producto;
         public $descripcion_producto;
         public $precioCompra_producto;
@@ -42,6 +43,16 @@
                 self::$Errores[] = "La marca del producto es obligatorio";
             }
             return self::$Errores;
+        }
+
+        public function allProducts(){
+            $query = "SELECT producto.id, nombre_producto, descripcion_producto, precioCompra_producto, precioVenta_producto, stock_producto, nombre_marca FROM producto INNER JOIN marca ON producto.cvemarca_producto = marca.id;";
+            $Resultado = self::$db->query($query);
+            $All = [];
+            while($row = $Resultado->fetch_assoc()){
+                $All[] = $row;
+            }
+            return $All;
         }
     }
 ?>
