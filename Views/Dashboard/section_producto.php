@@ -15,7 +15,7 @@
         </div>
       <?php endforeach;?>
     <?php endif;?>
-    <form class="row" action="/Dashboard/dashboard?View=7<?php echo isset($id) ? '&id=' . $id : ''?>" method="POST">
+    <form class="row" action="/Dashboard/dashboard?View=<?php echo $View;?><?php echo isset($id) ? '&id=' . $id : ''?>" method="POST">
       <!-- NOMBRE-MARCA -->
       <div class="col-12 d-lg-flex">
           <div class="col-12 col-lg-6  p-1 p-lg-3">

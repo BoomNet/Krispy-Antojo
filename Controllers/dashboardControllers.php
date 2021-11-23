@@ -30,13 +30,7 @@
                     static::getProducts($router, $View);
                     break;
                 case 6:
-                    $Errores = Producto::getError();
-                    $producto = new Producto;
-                    $router->render('/Dashboard/dashboard', [
-                        'View' => $View,
-                        'Errores' => $Errores, 
-                        'producto' => $producto
-                    ]);
+                    static::postProducts($router, $View);
                     break;
                 case 7:
                     static::getIdProducts($router, $View);
@@ -202,14 +196,22 @@
         public static function postProducts($router, $View){
             $Errores = Producto::getError();
             $producto = new Producto;
+            $Marca = Marca::all();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $producto = new Producto($_POST['producto']);
                 $Errores = $producto->validarProducto();
+                if(empty($Errores)){
+                    $guardado = $producto->Guardar();
+                    if($guardado){
+                        header('Location: /Dashboard/dashboard?View=5');
+                    }
+                }
             }
             $router->render('/Dashboard/dashboard',[
                 'View' => $View,
                 'Errores' => $Errores,
-                'producto' => $producto
+                'producto' => $producto,
+                'Marca' => $Marca
             ]);
         }
     }
