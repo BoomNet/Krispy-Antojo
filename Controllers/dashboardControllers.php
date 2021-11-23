@@ -1,5 +1,7 @@
 <?php 
     namespace Controllers;
+
+    use Model\Marca;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
@@ -25,18 +27,13 @@
                     static::getIdUser($router, $View);
                     break;
                 case 5: 
-                    $router->render('/Dashboard/dashboard', [
-                        'View' => $View
-                    ]);
+                    static::getProducts($router, $View);
                     break;
                 case 6:
-                    $Errores = Producto::getError();
-                    $producto = new Producto;
-                    $router->render('/Dashboard/dashboard', [
-                        'View' => $View,
-                        'Errores' => $Errores, 
-                        'producto' => $producto
-                    ]);
+                    static::postProducts($router, $View);
+                    break;
+                case 7:
+                    static::getIdProducts($router, $View);
                     break;
                 default: 
                     break;
@@ -57,7 +54,10 @@
                     break;
                 case 6:
                     static::postProducts($router, $View);
-                    break;        
+                    break;    
+                case 7:
+                    static::getIdProducts($router, $View);
+                    break;    
                 default:    
                     break;
             }
@@ -113,6 +113,39 @@
                 'ChangePass' => $ChangePass
             ]);
         }
+        public static function getProducts($router, $View){
+            $productos = new Producto;
+            $allProducts = $productos->allProducts();
+            $router->render('/Dashboard/dashboard', [
+                'allProducts' => $allProducts,
+                'View' => $View,
+                
+            ]);
+        }
+        public static function getIdProducts($router, $View){
+            $id = Validar();
+            $Marca = Marca::all();
+            $producto = Producto::find($id);
+            $Errores = Producto::getError();
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $args = $_POST['producto'];
+                $producto->Sincronizar($args);
+                $Errores = $producto->validarProducto();
+                if(empty($Errores)){
+                    $guardado = $producto->Guardar();
+                    if($guardado){
+                        header('Location: /Dashboard/dashboard?View=5');
+                    }
+                }
+            }
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View,
+                'Errores' => $Errores,
+                'producto' => $producto, 
+                'Marca' => $Marca, 
+                'id' => $id
+            ]);
+        }
         
         /* ******-----POST------****** */
         public static function searchUser($router, $View){
@@ -163,14 +196,22 @@
         public static function postProducts($router, $View){
             $Errores = Producto::getError();
             $producto = new Producto;
+            $Marca = Marca::all();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $producto = new Producto($_POST['producto']);
                 $Errores = $producto->validarProducto();
+                if(empty($Errores)){
+                    $guardado = $producto->Guardar();
+                    if($guardado){
+                        header('Location: /Dashboard/dashboard?View=5');
+                    }
+                }
             }
             $router->render('/Dashboard/dashboard',[
                 'View' => $View,
                 'Errores' => $Errores,
-                'producto' => $producto
+                'producto' => $producto,
+                'Marca' => $Marca
             ]);
         }
     }

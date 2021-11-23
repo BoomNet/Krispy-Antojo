@@ -15,20 +15,21 @@
         </div>
       <?php endforeach;?>
     <?php endif;?>
-    <form class="row" action="/Dashboard/dashboard?View=6" method="POST">
+    <form class="row" action="/Dashboard/dashboard?View=<?php echo $View;?><?php echo isset($id) ? '&id=' . $id : ''?>" method="POST">
       <!-- NOMBRE-MARCA -->
       <div class="col-12 d-lg-flex">
           <div class="col-12 col-lg-6  p-1 p-lg-3">
               <label class="form-label">Nombre del Producto</label>
-              <input class="form-control" name="producto[nombre_proucto]" type="text" value=<?php echo $producto->nombre_producto;?>>
+              <input class="form-control" name="producto[nombre_producto]" type="text" value=<?php echo $producto->nombre_producto;?>>
             </div>
             <div class="col-10 col-lg-2 p-1 p-lg-3">
-                <label class="form-label">Nombre del Producto</label>
-                <select class="form-select" name="usuario[cverol_usuario]">
-                    <option selected disabled>...</option>
-                    <?php foreach($Rol as $rol):?>
-                    <option <?php $usuario->cverol_usuario === $rol->id ? '' : 'selected';?>
-                        value="<?php echo $rol->id;?>"><?php echo s($rol->rol);?></option>
+                <label class="form-label">Nombre de la marca</label>
+                <select class="form-select" name="producto[cvemarca_producto]">
+                    <option selected disabled>Selecciona una marca...</option>
+                    <?php foreach($Marca as $marca):?>
+                      <option <?php echo $producto->cvemarca_producto === $marca->id ? 'selected' : '';?>
+                          value="<?php echo $marca->id;?>"><?php echo $marca->nombre_marca;?>
+                      </option>
                     <?php endforeach;?>
                 </select>
             </div>
@@ -37,7 +38,7 @@
         <div class="col-12 d-lg-flex">
             <div class="col-12 col-lg-7 p-1 p-lg-3">
               <label class="form-label">Descripción</label>
-              <textarea class="form-control" name="producto[descripcion_producto]" type="text"  value=<?php echo $producto->descripcion_producto;?>></textarea>
+              <textarea class="form-control" name="producto[descripcion_producto]" type="text"><?php echo $producto->descripcion_producto;?></textarea>
             </div>
             <div class="row">
                 <div class="col-4 p-1 p-lg-3">

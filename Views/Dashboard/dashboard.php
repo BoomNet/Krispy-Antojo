@@ -106,6 +106,12 @@
           <?php
             include __DIR__ . "/section_producto.php";
           break;
+        case 7:
+          ?>
+            <h1 class="text-center pt-5">Editar Producto</h1>
+          <?php 
+            include __DIR__ . "/section_producto.php";
+          break;
         default:
           break;
       }
