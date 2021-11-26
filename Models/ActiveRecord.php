@@ -2,6 +2,7 @@
     namespace Model;
 
 use Dotenv\Parser\Value;
+use Exception;
 
 class ActiveRecord{
         //BASE DE DATOS
@@ -62,12 +63,18 @@ class ActiveRecord{
 
         // Identificar y unir los atributos de la BD o Mapea las columnas con el objeto en memoria que tenemos
         public function Atributos(){
-            $Atributos = [];
-            foreach(static::$columnaDB as $Columna){
-                if($Columna === 'id') continue;
-                $Atributos[$Columna] = $this->$Columna; //$this->$Columna hacer referencia al objeto en memoria
+            try{
+                $Atributos = [];
+                foreach(static::$columnaDB as $Columna){
+                    if($Columna === 'id') continue;
+                    $Atributos[$Columna] = $this->$Columna; //$this->$Columna hacer referencia al objeto en memoria
+                }
+                return $Atributos;
+               
+            }catch(Exception $e){
+                echo $e->getMessage();
             }
-            return $Atributos;
+            
         }
         public function SanitizarDatos(){
             $Atributos = $this->Atributos();

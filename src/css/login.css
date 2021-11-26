@@ -366,10 +366,10 @@ a{
   align-items: center;
 }
 button.eliminar{
-  color: #0A58CA;
+  color: rgb(211, 22, 22);
 }
 button.eliminar:hover{
-  color: #0b4eb3;
+  color: rgb(163, 24, 24);
 }
 
 /* SWWET ALERT*/

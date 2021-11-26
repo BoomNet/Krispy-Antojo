@@ -58,7 +58,7 @@
         </div>
         <div class="col-12 col-lg-4 p-1 p-lg-3">
           <label class="form-label">Telefono:</label>
-          <input class="form-control" name="usuario[telefono_usuario]" type="text" value=<?php echo $usuario->usuario_usuario;?>>
+          <input class="form-control" name="usuario[telefono_usuario]" type="text" value=<?php echo $usuario->telefono_usuario?>>
         </div>
       </div>
       <!-- CORREO -->
