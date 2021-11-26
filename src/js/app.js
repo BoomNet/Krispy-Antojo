@@ -1,15 +1,10 @@
 /* ***VARIABLES*** */
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
-let searchBtn = document.querySelector(".bx-search");
 const Logout = document.querySelector('#logout');
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', () => {
   closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    menuBtnChange();
-  });
-  searchBtn.addEventListener("click", ()=>{ 
     sidebar.classList.toggle("open");
     menuBtnChange();
   });
@@ -53,3 +48,4 @@ function Alert(e){
     }
   })
 }
+

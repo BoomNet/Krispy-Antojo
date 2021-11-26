@@ -2,6 +2,8 @@
     if(!isset($_SESSION)){
       session_start();
     }
+    $nombreSesion = $_SESSION['usuario'] ?? false;
+    $rolSesion = $_SESSION['rol'] ?? false;
     $Autenticado = $_SESSION['login'] ?? false;  
 ?>
 <div class="sidebar">
@@ -10,11 +12,6 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list" id="Navegacion">
-      <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
-         <span class="tooltip">Search</span>
-      </li>
       <li>
         <a href="#">
           <i class='bx bx-grid-alt'></i>
@@ -28,13 +25,6 @@
          <span class="links_name">Usuario</span>
        </a>
        <span class="tooltip">Usuario</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-chat roles'></i>
-         <span class="links_name">Roles</span>
-       </a>
-       <span class="tooltip">Roles</span>
      </li>
      <li>
        <a href="/Dashboard/dashboard?View=5">
@@ -61,10 +51,10 @@
        <?php if($Autenticado):?>
           <a class="cerrar-sesion" id="logout">
             <div class="profile-details">
-              <img src="https://avatars.githubusercontent.com/u/46621591?v=4" alt="profileImg">
+              <img src="/build/img/Fondo.png" alt="profileImg">
               <div class="name_job">
-                <div class="name">Test</div>
-                <div class="job">Web designer</div>
+                <div class="name"><?php echo $nombreSesion;?></div>
+                <div class="job"><?php echo $rolSesion === "3" ? 'Administrador' : 'Empleado';?></div>
               </div>
             </div>
             <div>

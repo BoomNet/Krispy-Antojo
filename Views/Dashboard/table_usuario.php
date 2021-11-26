@@ -25,11 +25,9 @@
                     <table class="table table-hover table-sm ">
                         <thead class="table-info">
                             <tr>
-                                <th>Clave</th>
-                                <th>Nombre</th>
-                                <th>Apellido Paterno</th>
-                                <th>Apellido Materno</th>
+                                <th>Nombre Completo</th>
                                 <th>Nombre de Usuario</th>
+                                <th>Telefono</th>
                                 <th>Rol</th>
                                 <th>Acciones</th>
                             </tr>
@@ -37,11 +35,9 @@
                         <tbody id="table-user">
                             <?php foreach($allUsers as $user):?>
                                 <tr>
-                                    <td><?php echo $user['id']?></td>
-                                    <td><?php echo $user['nombre_usuario']?></td>
-                                    <td><?php echo $user['apellidopa_usuario']?></td>
-                                    <td><?php echo $user['apellidoma_usuario']?></td>
+                                    <td><?php echo $user['nombre_usuario'] . " " . $user['apellidopa_usuario'] . " " . $user['apellidoma_usuario']?></td>
                                     <td><?php echo $user['usuario_usuario']?></td>
+                                    <td><?php echo $user['telefono_usuario']?></td>
                                     <td><?php echo $user['rol'];?></td>
                                     <td class="acciones-edit">
                                         <a href="/Dashboard/dashboard?View=4&id=<?php echo $user['id'];?>">
@@ -50,7 +46,7 @@
                                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                             </svg>
                                         </a>
-                                        <form action="/Dashboard/eliminar" method="POST">
+                                        <form action="/Dashboard/eliminar" method="POST" id="btn-eliminar">
                                             <input type="hidden" name="id" value="<?php echo $user['id'];?>">
                                             <button type="submit" class="btn eliminar">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
