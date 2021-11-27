@@ -326,7 +326,6 @@ a{
   left: 100px;
   width: calc(100% - 78px);
   transition: all 0.5s ease;
-  z-index: 2;
 }
 .sidebar.open ~ .home-section{
   left: 250px;
@@ -365,13 +364,18 @@ a{
   justify-content: center;
   align-items: center;
 }
+button.actualizar{
+  color: #1868e0;
+}
+button.actualizar:hover{
+  color: #0a58ca;
+}
 button.eliminar{
   color: rgb(211, 22, 22);
 }
 button.eliminar:hover{
   color: rgb(163, 24, 24);
 }
-
 /* SWWET ALERT*/
 
 .swal2-cancel{

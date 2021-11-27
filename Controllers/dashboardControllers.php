@@ -35,6 +35,9 @@
                 case 7:
                     static::getIdProducts($router, $View);
                     break;
+                case 8: 
+                    static::getSpending($router, $View);
+                    break;
                 default: 
                     break;
             }
@@ -58,6 +61,8 @@
                 case 7:
                     static::getIdProducts($router, $View);
                     break;    
+                case 8:
+                    static::getSpending($router, $View);
                 default:    
                     break;
             }
@@ -144,6 +149,11 @@
                 'producto' => $producto, 
                 'Marca' => $Marca, 
                 'id' => $id
+            ]);
+        }
+        public static function getSpending($router, $View){
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View
             ]);
         }
         

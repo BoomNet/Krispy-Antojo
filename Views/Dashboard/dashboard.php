@@ -34,7 +34,7 @@
        <span class="tooltip">Productos</span>
      </li>
      <li>
-       <a href="#">
+       <a href="/Dashboard/dashboard?View=8">
          <i class='bx bx-folder gastos'></i>
          <span class="links_name">Gasto</span>
        </a>
@@ -65,7 +65,7 @@
      </li>
     </ul>
   </div>
-<section class="home-section section-main">
+<main class="home-section section-main main">
   <?php 
     if(isset($View)){
       switch($View){
@@ -102,9 +102,15 @@
           <?php 
             include __DIR__ . "/section_producto.php";
           break;
+        case 8:
+          ?> 
+            <h1 class="text-center pt-5">Tabla de Gastos</h1>
+          <?php 
+            include __DIR__ . "/table_gasto.php";
+          break;
         default:
           break;
       }
     }
   ?>
-</section>
+</main>

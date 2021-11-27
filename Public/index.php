@@ -5,7 +5,6 @@
     use Controllers\usuarioControllers;
     use Controllers\dashboardControllers;
     use Controllers\productoControllers;
-    use Controllers\APIDashboard;
 
     $Router = new Router();
 

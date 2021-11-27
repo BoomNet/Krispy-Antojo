@@ -19,7 +19,6 @@ function menuBtnChange() {
    closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
  }
 }
-
 /* ***SWEET ALERT*** */
 function Alert(e){
   e.preventDefault();
