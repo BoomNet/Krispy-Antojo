@@ -55,6 +55,9 @@
                 case 4:
                     static::getIdUser($router, $View);
                     break;
+                case 5:
+                    static::searchProducts($router, $View);
+                    break;
                 case 6:
                     static::postProducts($router, $View);
                     break;    
@@ -138,6 +141,7 @@
                 $producto->Sincronizar($args);
                 $Errores = $producto->validarProducto();
                 if(empty($Errores)){
+                    $producto->fechamod_producto = date('Y/m/d');
                     $guardado = $producto->Guardar();
                     if($guardado){
                         header('Location: /Dashboard/dashboard?View=5');
@@ -208,6 +212,22 @@
                 'Rol' => $Rol,
                 'View' => $View,
                 'ChangePass' => $ChangePass
+            ]);
+        }
+        public static function searchProducts($router, $View){
+            $producto = new Producto;
+            $Errores = Producto::getError();
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $busquedaProducto = $_POST['busqueda'];
+                $allProducts = $producto->searchProducts($busquedaProducto);
+                if(empty($allProducts)){
+                    $Errores[] = 'No se encontraron resultados';
+                }
+            }
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View,
+                'allProducts' => $allProducts,
+                'Errores' => $Errores
             ]);
         }
         public static function postProducts($router, $View){
