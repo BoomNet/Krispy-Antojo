@@ -32,15 +32,15 @@
       <div class="col-12 d-lg-flex">
         <div class="col-12 col-lg-4 p-1 p-lg-3">
           <label class="form-label">Nombre</label>
-          <input class="form-control" name="usuario[nombre_usuario]" type="text" value=<?php echo $usuario->nombre_usuario;?>>
+          <input class="form-control" name="usuario[nombre_usuario]" type="text" value=<?php echo s($usuario->nombre_usuario);?>>
         </div>
         <div class="col-12 col-lg-4 p-1 p-lg-3">
           <label class="form-label">Apellido Paterno</label>
-          <input class="form-control" name="usuario[apellidopa_usuario]" type="text" value=<?php echo $usuario->apellidopa_usuario;?>>
+          <input class="form-control" name="usuario[apellidopa_usuario]" type="text" value=<?php echo s($usuario->apellidopa_usuario);?>>
         </div>
         <div class="col-12 col-lg-4 p-1 p-lg-3">
           <label class="form-label">Apellido Materno</label>
-          <input class="form-control" name="usuario[apellidoma_usuario]" type="text" value=<?php echo $usuario->apellidoma_usuario;?>>
+          <input class="form-control" name="usuario[apellidoma_usuario]" type="text" value=<?php echo s($usuario->apellidoma_usuario);?>>
         </div>
       </div>
       <!-- USUARIO-CORREO -->
@@ -49,16 +49,16 @@
           <label class="form-label">Nombre de Usuario</label>
           <div class="input-group">
             <div class="input-group-text">@</div>
-            <input class="form-control" name="usuario[usuario_usuario]" type="text" value=<?php echo $usuario->usuario_usuario;?>>
+            <input class="form-control" name="usuario[usuario_usuario]" type="text" value=<?php echo s($usuario->usuario_usuario);?>>
           </div>
         </div>
         <div class="col-12 col-lg-4 p-1 p-lg-3">
           <label class="form-label">Correo</label>
-          <input class="form-control" name="usuario[correo_usuario]" type="email" value=<?php echo $usuario->correo_usuario;?>>
+          <input class="form-control" name="usuario[correo_usuario]" type="email" value=<?php echo s($usuario->correo_usuario);?>>
         </div>
         <div class="col-12 col-lg-4 p-1 p-lg-3">
           <label class="form-label">Telefono:</label>
-          <input class="form-control" name="usuario[telefono_usuario]" type="text" value=<?php echo $usuario->telefono_usuario?>>
+          <input class="form-control" name="usuario[telefono_usuario]" type="text" value=<?php echo s($usuario->telefono_usuario);?>>
         </div>
       </div>
       <!-- CORREO -->

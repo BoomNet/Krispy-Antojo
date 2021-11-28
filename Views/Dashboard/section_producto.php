@@ -20,7 +20,7 @@
       <div class="col-12 d-lg-flex">
           <div class="col-12 col-lg-6  p-1 p-lg-3">
               <label class="form-label">Nombre del Producto</label>
-              <input class="form-control" name="producto[nombre_producto]" type="text" value=<?php echo $producto->nombre_producto;?>>
+              <input class="form-control" name="producto[nombre_producto]" type="text" value=<?php echo s($producto->nombre_producto);?>>
             </div>
             <div class="col-10 col-lg-2 p-1 p-lg-3">
                 <label class="form-label">Nombre de la marca</label>
@@ -38,16 +38,16 @@
         <div class="col-12 d-lg-flex">
             <div class="col-12 col-lg-7 p-1 p-lg-3">
               <label class="form-label">Descripción</label>
-              <textarea class="form-control" name="producto[descripcion_producto]" type="text"><?php echo $producto->descripcion_producto;?></textarea>
+              <textarea class="form-control" name="producto[descripcion_producto]" type="text"><?php echo s($producto->descripcion_producto);?></textarea>
             </div>
             <div class="row">
                 <div class="col-4 p-1 p-lg-3">
                   <label class="form-label">Compra</label>
-                  <input class="form-control" name="producto[precioCompra_producto]" type="" placeholder="$" value=<?php echo $producto->precioCompra_producto;?>>
+                  <input class="form-control" name="producto[precioCompra_producto]" type="" placeholder="$" value=<?php echo s($producto->precioCompra_producto);?>>
                 </div>
                 <div class="col-4 p-1 p-lg-3">
                   <label class="form-label">Venta</label>
-                  <input class="form-control" name="producto[precioVenta_producto]" type="" placeholder="$" value=<?php echo $producto->precioVenta_producto;?>>
+                  <input class="form-control" name="producto[precioVenta_producto]" type="" placeholder="$" value=<?php echo s($producto->precioVenta_producto);?>>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="col-12 d-lg-flex">
             <div class="col-4 p-1 p-lg-3">
                 <label class="form-label">Stock</label>
-                <input class="form-control" name="producto[stock_producto]" type="number" value=<?php echo $producto->stock_producto;?>>
+                <input class="form-control" name="producto[stock_producto]" type="number" value=<?php echo s($producto->stock_producto);?>>
             </div>
         </div>
         <!-- BOTONES -->
