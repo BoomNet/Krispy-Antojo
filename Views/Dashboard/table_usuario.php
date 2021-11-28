@@ -60,6 +60,15 @@
                             <?php endforeach;?>
                         </tbody>
                     </table>
+                    <?php
+                        if(isset($Errores)){
+                            foreach($Errores as $error){
+                                ?>
+                                    <?php echo $error?>
+                                <?php
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </div>

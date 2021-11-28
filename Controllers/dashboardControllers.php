@@ -160,13 +160,19 @@
         /* ******-----POST------****** */
         public static function searchUser($router, $View){
             $usuario = new Usuario;
+            $Errores = Usuario::getError();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $Busqueda = $_POST['busqueda'];
                 $allUsers = $usuario->searchUsers($Busqueda);
+                if(empty($allUsers)){
+                    $Errores[] = "No se encontraron resultados";
+                }
             }
+            
             $router->render('/Dashboard/dashboard', [
                 'View' => $View,
-                'allUsers' => $allUsers
+                'allUsers' => $allUsers,
+                'Errores' => $Errores
             ]);
         }
         public static function PostUser($router, $View){
