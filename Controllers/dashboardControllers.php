@@ -103,6 +103,7 @@
                 $usuario->Sincronizar($args);
                 $Errores = $usuario->ValidarUsuario(true);
                 if(empty($Errores)){
+                    $usuario->fechamod_usuario = date('Y/m/d');
                     $guardado = $usuario->Guardar();
                     if($guardado){
                         header('Location: /Dashboard/dashboard?View=2');
