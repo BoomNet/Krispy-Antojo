@@ -118,6 +118,7 @@ use MVC\Router;
                     self::$Errores[] = 'La contraseña es incorrecta';
                     return;
                 }
+                $_SESSION['id'] = $usuario->id;
                 $_SESSION['usuario'] = $usuario->nombre_usuario;
                 $_SESSION['rol'] = $usuario->cverol_usuario;
                 return $Autenticado;

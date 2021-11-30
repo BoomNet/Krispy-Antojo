@@ -376,6 +376,18 @@ button.eliminar{
 button.eliminar:hover{
   color: rgb(163, 24, 24);
 }
+/* ALERTA MODAL*/
+
+.error-alerta{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: rgb(136, 11, 11);
+  color: #fff;
+  border-color: rgb(87, 12, 12);
+  padding: 1rem 2rem;
+}
+
 /* SWWET ALERT*/
 
 .swal2-cancel{

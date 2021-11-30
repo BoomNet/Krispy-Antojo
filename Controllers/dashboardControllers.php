@@ -1,7 +1,8 @@
 <?php 
     namespace Controllers;
 
-    use Model\Marca;
+use Model\Gasto;
+use Model\Marca;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
@@ -64,8 +65,6 @@
                 case 7:
                     static::getIdProducts($router, $View);
                     break;    
-                case 8:
-                    static::getSpending($router, $View);
                 default:    
                     break;
             }
@@ -157,8 +156,11 @@
             ]);
         }
         public static function getSpending($router, $View){
+            $gasto = new Gasto;
+            $allSpending = $gasto->allSpending();
             $router->render('/Dashboard/dashboard', [
-                'View' => $View
+                'View' => $View,
+                'allSpending' => $allSpending
             ]);
         }
         
