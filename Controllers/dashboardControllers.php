@@ -1,7 +1,8 @@
 <?php 
     namespace Controllers;
 
-    use Model\Marca;
+use Model\Gasto;
+use Model\Marca;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
@@ -35,6 +36,9 @@
                 case 7:
                     static::getIdProducts($router, $View);
                     break;
+                case 8: 
+                    static::getSpending($router, $View);
+                    break;
                 default: 
                     break;
             }
@@ -51,6 +55,9 @@
                     break;
                 case 4:
                     static::getIdUser($router, $View);
+                    break;
+                case 5:
+                    static::searchProducts($router, $View);
                     break;
                 case 6:
                     static::postProducts($router, $View);
@@ -98,6 +105,7 @@
                 $usuario->Sincronizar($args);
                 $Errores = $usuario->ValidarUsuario(true);
                 if(empty($Errores)){
+                    $usuario->fechamod_usuario = date('Y/m/d');
                     $guardado = $usuario->Guardar();
                     if($guardado){
                         header('Location: /Dashboard/dashboard?View=2');
@@ -132,6 +140,7 @@
                 $producto->Sincronizar($args);
                 $Errores = $producto->validarProducto();
                 if(empty($Errores)){
+                    $producto->fechamod_producto = date('Y/m/d');
                     $guardado = $producto->Guardar();
                     if($guardado){
                         header('Location: /Dashboard/dashboard?View=5');
@@ -146,17 +155,31 @@
                 'id' => $id
             ]);
         }
+        public static function getSpending($router, $View){
+            $gasto = new Gasto;
+            $allSpending = $gasto->allSpending();
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View,
+                'allSpending' => $allSpending
+            ]);
+        }
         
         /* ******-----POST------****** */
         public static function searchUser($router, $View){
             $usuario = new Usuario;
+            $Errores = Usuario::getError();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $Busqueda = $_POST['busqueda'];
                 $allUsers = $usuario->searchUsers($Busqueda);
+                if(empty($allUsers)){
+                    $Errores[] = "No se encontraron resultados";
+                }
             }
+            
             $router->render('/Dashboard/dashboard', [
                 'View' => $View,
-                'allUsers' => $allUsers
+                'allUsers' => $allUsers,
+                'Errores' => $Errores
             ]);
         }
         public static function PostUser($router, $View){
@@ -191,6 +214,22 @@
                 'Rol' => $Rol,
                 'View' => $View,
                 'ChangePass' => $ChangePass
+            ]);
+        }
+        public static function searchProducts($router, $View){
+            $producto = new Producto;
+            $Errores = Producto::getError();
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $busquedaProducto = $_POST['busqueda'];
+                $allProducts = $producto->searchProducts($busquedaProducto);
+                if(empty($allProducts)){
+                    $Errores[] = 'No se encontraron resultados';
+                }
+            }
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View,
+                'allProducts' => $allProducts,
+                'Errores' => $Errores
             ]);
         }
         public static function postProducts($router, $View){

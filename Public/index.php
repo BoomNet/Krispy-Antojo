@@ -5,7 +5,7 @@
     use Controllers\usuarioControllers;
     use Controllers\dashboardControllers;
     use Controllers\productoControllers;
-    use Controllers\APIDashboard;
+    use Controllers\APIControllers;
 
     $Router = new Router();
 
@@ -20,5 +20,7 @@
     $Router->post('/Dashboard/eliminar', [usuarioControllers::class, 'Eliminar']);
     $Router->post('/Dashboard/eliminar-producto', [productoControllers::class, 'Eliminar']);
 
+    //API
+    $Router->post('/Dashboard/modal', [APIControllers::class, 'guardarGasto']);
     $Router->ComprobarRutas();
 ?>

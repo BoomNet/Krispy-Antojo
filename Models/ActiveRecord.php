@@ -9,7 +9,6 @@ class ActiveRecord{
         protected static $db;
         protected static $columnaDB = [];
         protected static $Tabla = '';
-        protected static $cve = '';
         //ERRORES
         protected static $Errores = [];
         
