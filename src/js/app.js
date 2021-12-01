@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBtnChange();
   });
   Logout.addEventListener('click', Alert);
-  Modal.addEventListener('submit', Errores);
   BtnUpdateSpending.addEventListener('click', getId);
+  Modal.addEventListener('submit', Errores);
 });
 
 /* ***FUNCIONES*** */

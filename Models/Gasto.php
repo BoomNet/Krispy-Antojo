@@ -22,7 +22,7 @@
             $this->diferente_gasto = $args['diferente_gasto'] ?? null;
             $this->fechacrea_gasto = date('Y/m/d');
             $this->fechamod_gasto = null;
-            $this->cveusuario_gasto = $args['cveusuario_gasto'] ?? 25;
+            $this->cveusuario_gasto = $args['cveusuario_gasto'] ?? '';
         }
 
         public function ValidarGasto(){
@@ -43,6 +43,19 @@
                 $All[] = $row;
             }
             return $All;
+        }
+
+        public function SumaPrevisto(){
+            $Query = "SELECT SUM(previsto_gasto) FROM gasto;";
+            $Resultado = self::$db->query($Query);
+            $SumaPrevisto = $Resultado->fetch_assoc();
+            return $SumaPrevisto['SUM(previsto_gasto)'];
+        }
+        public function RealGasto(){
+            $Query = "SELECT SUM(real_gasto) FROM gasto;";
+            $Resultado = self::$db->query($Query);
+            $RealGasto = $Resultado->fetch_assoc();
+            return $RealGasto['SUM(real_gasto)'];
         }
     }
 

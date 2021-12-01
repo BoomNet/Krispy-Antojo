@@ -157,10 +157,16 @@ use Model\Marca;
         }
         public static function getSpending($router, $View){
             $gasto = new Gasto;
-            $allSpending = $gasto->allSpending();
+            $allSpending = $gasto->allSpending();   
+            $id = $_GET['id'] ?? false;         
+            $Total = $gasto->RealGasto();
+            $Previsto = $gasto->SumaPrevisto();
             $router->render('/Dashboard/dashboard', [
                 'View' => $View,
-                'allSpending' => $allSpending
+                'allSpending' => $allSpending,
+                'Total' => $Total,
+                'Previsto' => $Previsto,
+                'id' => $id
             ]);
         }
         
