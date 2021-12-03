@@ -4,6 +4,7 @@ let closeBtn = document.querySelector("#btn");
 const Logout = document.querySelector('#logout');
 const BtnUpdateSpending = document.querySelector('.btn-gasto');
 const Modal = document.querySelector('#modal-gasto');
+const DeleteSpending = document.querySelectorAll('#btn-eliminar');
 
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   Logout.addEventListener('click', Alert);
   BtnUpdateSpending.addEventListener('click', getId);
+  DeleteSpending.forEach((Delete) => {
+    Delete.addEventListener('submit', deleteSpen);
+  });
   Modal.addEventListener('submit', Errores);
 });
 
@@ -25,7 +29,8 @@ function menuBtnChange() {
  }
 }
 function getId(e){
-  let buttonId = '';
+  e.preventDefault();
+  let buttonId;
   switch(e.target.nodeName){
     case 'path':
       buttonId = e.target.parentElement.parentElement.id; 
@@ -44,13 +49,13 @@ async function Errores(e){
     e.preventDefault();
     const descripcion_gasto = document.querySelector('#descripcion').value,
     previsto_gasto = document.querySelector('#previsto').value;
-
+    const id = document.querySelector('#idmodal').value;
     if(descripcion_gasto === '' || previsto_gasto === ''){
       ImprimirAlerta('Descripción y/o Gasto previsto Obligatorio');
       return;
     }
-
     const Formulario = new FormData(Modal);
+   
     const url = 'http://localhost:3000/Dashboard/modal';
     const resultado = await fetch(url, {
       method: 'POST',
@@ -65,7 +70,7 @@ async function Errores(e){
         button: 'OK'
       }).then( () => {
         setTimeout(() => {
-            window.location.href = 'http://localhost:3000/Dashboard/dashboard?View=8';
+            window.location.href = `http://localhost:3000/Dashboard/dashboard?View=8&id=${id}`;
         }, 1000);
       });
     }
@@ -77,7 +82,36 @@ async function Errores(e){
     });
   }
 }
-
+async function deleteSpen(e){
+  try{
+    e.preventDefault();
+    const id = document.querySelector('#eliminar-gasto').value;
+    const Formulario = new FormData();
+    Formulario.append('id',id);
+    const url = 'http://localhost:3000/Dashboard/eliminar-gasto';
+    const respuesta = await fetch(url, {
+      method: 'POST',
+      body: Formulario
+    });
+    const resultado = await respuesta.json();
+    if(resultado.guardado){
+      Swal.fire({
+        icon: 'success',
+        title: 'Gasto Eliminado',
+        text: 'Tu gasto fue eliminado correctamente',
+        button: 'OK'
+      }).then( () => {
+        window.location.reload();
+      });
+    }
+  }catch(error){
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un error al guardar tu gasto'
+    });
+  }
+}
 function ImprimirAlerta(mensaje){
   const AlertaP = document.querySelector('.errores-modal');
   if(!AlertaP.classList.contains('error-alerta')){
