@@ -2,6 +2,7 @@
     if(!isset($_SESSION)){
       session_start();
     }
+    $idSession = $_SESSION['id'] ?? false;
     $nombreSesion = $_SESSION['usuario'] ?? false;
     $rolSesion = $_SESSION['rol'] ?? false;
     $Autenticado = $_SESSION['login'] ?? false;  
@@ -34,7 +35,7 @@
        <span class="tooltip">Productos</span>
      </li>
      <li>
-       <a href="/Dashboard/dashboard?View=8">
+       <a href="/Dashboard/dashboard?View=8&id=<?php echo $idSession;?>">
          <i class='bx bx-folder gastos'></i>
          <span class="links_name">Gasto</span>
        </a>

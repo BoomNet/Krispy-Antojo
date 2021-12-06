@@ -19,10 +19,10 @@
             $this->descripcion_gasto = $args['descripcion_gasto'] ?? '';
             $this->previsto_gasto = $args['previsto_gasto'] ?? '';
             $this->real_gasto = $args['real_gasto'] ?? null;
-            $this->diferente_gasto = $args['diferente_gasto'] ?? null;
+            $this->diferente_gasto = $args['diferente_gasto'] ?? '0';
             $this->fechacrea_gasto = date('Y/m/d');
             $this->fechamod_gasto = null;
-            $this->cveusuario_gasto = $args['cveusuario_gasto'] ?? 25;
+            $this->cveusuario_gasto = $args['cveusuario_gasto'] ?? '';
         }
 
         public function ValidarGasto(){
@@ -36,7 +36,8 @@
         }
 
         public static function allSpending(){
-            $query = "SELECT gasto.id, descripcion_gasto, previsto_gasto, real_gasto, diferente_gasto, nombre_usuario, apellidopa_usuario, apellidoma_usuario FROM gasto INNER JOIN usuario ON gasto.cveusuario_gasto = usuario.id";
+            $query = "SELECT gasto.id, descripcion_gasto, previsto_gasto, real_gasto, (previsto_gasto - real_gasto) as 'diferente_gasto', nombre_usuario, apellidopa_usuario, apellidoma_usuario FROM gasto INNER JOIN usuario ON gasto.cveusuario_gasto = usuario.id;
+            ";
             $Resultado = self::$db->query($query);
             $All = [];
             while($row = $Resultado->fetch_assoc()){
@@ -44,6 +45,20 @@
             }
             return $All;
         }
+
+        public function SumaPrevisto(){
+            $Query = "SELECT SUM(previsto_gasto) FROM gasto;";
+            $Resultado = self::$db->query($Query);
+            $SumaPrevisto = $Resultado->fetch_assoc();
+            return $SumaPrevisto['SUM(previsto_gasto)'];
+        }
+        public function RealGasto(){
+            $Query = "SELECT SUM(real_gasto) FROM gasto;";
+            $Resultado = self::$db->query($Query);
+            $RealGasto = $Resultado->fetch_assoc();
+            return $RealGasto['SUM(real_gasto)'];
+        }
+
     }
 
 ?>

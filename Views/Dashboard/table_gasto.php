@@ -11,7 +11,8 @@
 
                     </div>
                     <form method="POST" id="modal-gasto">
-                        <input type="hidden" id="idmodal" name="id" value="">
+                        <input type="hidden" id="idmodal" name="cveusuario_gasto" value="<?php echo $id;?>">
+                        <input type="hidden" id="idgasto">
                         <div class="mb-3">
                             <label class="form-label required">Descripción</label>
                             <textarea cols="30" rows="5" class="form-control" name="descripcion_gasto" id="descripcion"></textarea>
@@ -35,8 +36,8 @@
 </div>
 <div class="rounded-p m-5">
     <div class="gastos">
-        <h2>Previsto: </h2>
-        <h2>Real: </h2>
+        <h2>Previsto: $<?php echo $Previsto;?></h2>
+        <h2>Real: $<?php echo $Total;?></h2>
     </div>
     <!-- TABLA -->
     <div class="row align-items-center justify-content">
@@ -54,12 +55,12 @@
                         </tr>
                     </thead>
                     <tbody> 
-                        <?php foreach($allSpending as $spending):?>       
+                        <?php foreach($allSpending as $spending):?>        
                             <tr>
                                 <td><?php echo $spending['descripcion_gasto'];?></td>
-                                <td><?php echo $spending['previsto_gasto'];?></td>
-                                <td><?php echo $spending['real_gasto'];?></td>
-                                <td><?php echo $spending['diferente_gasto'];?></td>
+                                <td>$<?php echo $spending['previsto_gasto'];?></td>
+                                <td>$<?php echo $spending['real_gasto'];?></td>
+                                <td id="diferenteTable"><?php echo $spending['diferente_gasto'];?></td>
                                 <td><?php echo $spending['nombre_usuario'] . " " . $spending['apellidopa_usuario'] . " " . $spending['apellidoma_usuario'];?></td>
                                 <td class="acciones-edit">
                                     <button type="button" class="btn actualizar btn-gasto" data-bs-toggle="modal" data-bs-target="#myModal" id="<?php echo $spending['id'];?>">
@@ -68,8 +69,8 @@
                                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                         </svg>
                                     </button>
-                                    <form action="/Dashboard/eliminar" method="POST" id="btn-eliminar">
-                                        <input type="hidden" name="id" value="<?php echo $spending['id'];?>">
+                                    <form method="POST" id="btn-eliminar">
+                                        <input type="hidden" id="eliminar-gasto" name="id" value="<?php echo $spending['id'];?>">
                                         <button type="submit" class="btn eliminar">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash svg" viewBox="0 0 16 16">
                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -85,6 +86,6 @@
             </div>
         </div>
     </div>
-    <a type="button" class="btn btn-success btn-gasto mt-5" data-bs-toggle="modal" data-bs-target="#myModal">Agregar Gasto</a>
+    <a type="button" class="btn btn-success add mt-5" data-bs-toggle="modal" data-bs-target="#myModal">Agregar Gasto</a>
 </div>
 
