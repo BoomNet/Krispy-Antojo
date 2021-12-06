@@ -11,9 +11,6 @@ const ModalAdd = document.querySelector('.addSpending');
 const CloseModal = document.querySelector('.btn-close');
 let SpendingData = [];
 let Id;
-const BtnUpdateSpending = document.querySelector('.btn-gasto');
-const Modal = document.querySelector('#modal-gasto');
-
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   await GetSpending().then((x)=>{
@@ -38,8 +35,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const Parametro = new URLSearchParams(window.location.search);
   Id = parseInt(Parametro.get('id'));
   CalcPrevisto();
-  Modal.addEventListener('submit', Errores);
-  BtnUpdateSpending.addEventListener('click', getId);
 });
 
 /* ***FUNCIONES*** */
@@ -87,7 +82,6 @@ function ClassUpdate(e){
 function getId(e){
   e.preventDefault();
   Modal.classList.add('update');
-function getId(e){
   let buttonId = '';
   switch(e.target.nodeName){
     case 'path':
@@ -194,36 +188,6 @@ async function deleteSpen(e){
         button: 'OK'
       }).then( () => {
         window.location.reload();
-  buttonId = document.querySelector('#idmodal').value;
-}
-async function Errores(e){
-  try{
-    e.preventDefault();
-    const descripcion_gasto = document.querySelector('#descripcion').value,
-    previsto_gasto = document.querySelector('#previsto').value;
-
-    if(descripcion_gasto === '' || previsto_gasto === ''){
-      ImprimirAlerta('Descripción y/o Gasto previsto Obligatorio');
-      return;
-    }
-
-    const Formulario = new FormData(Modal);
-    const url = 'http://localhost:3000/Dashboard/modal';
-    const resultado = await fetch(url, {
-      method: 'POST',
-      body: Formulario
-    });
-    const respuesta = await resultado.json();
-    if(respuesta.resultado){
-      Swal.fire({
-        icon: 'success',
-        title: 'Gasto agregado',
-        text: 'Tu gasto fue agregado correctamente',
-        button: 'OK'
-      }).then( () => {
-        setTimeout(() => {
-            window.location.href = 'http://localhost:3000/Dashboard/dashboard?View=8';
-        }, 1000);
       });
     }
   }catch(error){
@@ -242,7 +206,6 @@ function ValidarModal(){
     return;
   }
 }
-
 function ImprimirAlerta(mensaje){
   const AlertaP = document.querySelector('.errores-modal');
   if(!AlertaP.classList.contains('error-alerta')){

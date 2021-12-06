@@ -11,12 +11,8 @@
 
                     </div>
                     <form method="POST" id="modal-gasto">
-<<<<<<< HEAD
                         <input type="hidden" id="idmodal" name="cveusuario_gasto" value="<?php echo $id;?>">
                         <input type="hidden" id="idgasto">
-=======
-                        <input type="hidden" id="idmodal" name="id" value="">
->>>>>>> dev
                         <div class="mb-3">
                             <label class="form-label required">Descripción</label>
                             <textarea cols="30" rows="5" class="form-control" name="descripcion_gasto" id="descripcion"></textarea>
@@ -40,13 +36,8 @@
 </div>
 <div class="rounded-p m-5">
     <div class="gastos">
-<<<<<<< HEAD
         <h2>Previsto: $<?php echo $Previsto;?></h2>
         <h2>Real: $<?php echo $Total;?></h2>
-=======
-        <h2>Previsto: </h2>
-        <h2>Real: </h2>
->>>>>>> dev
     </div>
     <!-- TABLA -->
     <div class="row align-items-center justify-content">
