@@ -37,7 +37,7 @@ use Model\Marca;
                     static::getIdProducts($router, $View);
                     break;
                 case 8: 
-                    static::getSpending($router, $View);
+                    static::getGasto($router, $View);
                     break;
                 default: 
                     break;
@@ -155,9 +155,8 @@ use Model\Marca;
                 'id' => $id
             ]);
         }
-        public static function getSpending($router, $View){
+        public static function getGasto($router, $View){
             $gasto = new Gasto;
-<<<<<<< HEAD
             $allSpending = $gasto->allSpending();   
             $id = $_GET['id'] ?? false;         
             $Total = $gasto->RealGasto();
@@ -167,13 +166,7 @@ use Model\Marca;
                 'allSpending' => $allSpending,
                 'Total' => $Total,
                 'Previsto' => $Previsto,
-                'id' => $id
-=======
-            $allSpending = $gasto->allSpending();
-            $router->render('/Dashboard/dashboard', [
-                'View' => $View,
-                'allSpending' => $allSpending
->>>>>>> dev
+                'id' => $id 
             ]);
         }
         

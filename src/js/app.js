@@ -7,7 +7,7 @@ const Modal = document.querySelector('#modal-gasto');
 const DeleteSpending = document.querySelectorAll('#btn-eliminar');
 const IdScript = document.querySelector('#test-id');
 const Update = document.querySelector('.updateSpendig');
-const ModalAdd = document.querySelector('.addSpending');
+const ModalAdd = document.querySelector('.add');
 const CloseModal = document.querySelector('.btn-close');
 let SpendingData = [];
 let Id;
@@ -96,6 +96,7 @@ function getId(e){
   }
   document.querySelector('#idgasto').value = buttonId;
   let Spend = SpendingData.find(x => x.id === buttonId);
+  console.log(Spend);
   AddValues(Spend);
 }
 function AddValues(spend){

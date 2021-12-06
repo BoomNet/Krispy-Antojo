@@ -86,6 +86,6 @@
             </div>
         </div>
     </div>
-    <a type="button" class="btn btn-success btn-gasto mt-5" data-bs-toggle="modal" data-bs-target="#myModal">Agregar Gasto</a>
+    <a type="button" class="btn btn-success add mt-5" data-bs-toggle="modal" data-bs-target="#myModal">Agregar Gasto</a>
 </div>
 
