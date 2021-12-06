@@ -36,6 +36,7 @@
      </li>
      <li>
        <a href="/Dashboard/dashboard?View=8&id=<?php echo $idSession?>">
+       <a href="/Dashboard/dashboard?View=8">
          <i class='bx bx-folder gastos'></i>
          <span class="links_name">Gasto</span>
        </a>
