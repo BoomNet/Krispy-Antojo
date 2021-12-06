@@ -22,6 +22,8 @@
 
     //API
     $Router->post('/Dashboard/modal', [APIControllers::class, 'guardarGasto']);
+    $Router->get('/Dashboard/getGasto', [APIControllers::class, 'getGasto']);
+    $Router->post('/Dashboard/editar-gasto', [APIControllers::class, 'editarGasto']);
     $Router->post('/Dashboard/eliminar-gasto', [APIControllers::class, 'eliminarGasto']);
     $Router->ComprobarRutas();
 ?>
