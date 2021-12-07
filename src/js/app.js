@@ -9,11 +9,13 @@ const IdScript = document.querySelector('#test-id');
 const Update = document.querySelector('.updateSpendig');
 const ModalAdd = document.querySelector('.add');
 const CloseModal = document.querySelector('.btn-close');
+const User = document.querySelector('.user');
 let SpendingData = [];
 let Id;
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
+    UserRol();
     await GetSpending().then((x)=>{
       SpendingData.push(...x.resultado);
     }).catch(error => {
@@ -42,6 +44,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /* ***FUNCIONES*** */
+function UserRol(){
+  if(User){
+    User.remove();
+  }
+}
 function CalcPrevisto(){
   const diferencia = document.querySelectorAll('#diferenteTable');
 
