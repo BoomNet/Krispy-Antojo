@@ -376,6 +376,13 @@ button.eliminar{
 button.eliminar:hover{
   color: rgb(163, 24, 24);
 }
+
+.user{
+  display: none;
+}
+.admin{
+  display: block;
+}
 /* ALERTA MODAL*/
 
 .error-alerta{

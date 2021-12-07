@@ -13,28 +13,32 @@ let SpendingData = [];
 let Id;
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
-  await GetSpending().then((x)=>{
-    SpendingData.push(...x.resultado);
-  }).catch(error => {
+  try {
+    await GetSpending().then((x)=>{
+      SpendingData.push(...x.resultado);
+    }).catch(error => {
+      console.log(error);
+    });
+    closeBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("open");
+      menuBtnChange();
+    });
+    Logout.addEventListener('click', Alert);
+    ModalAdd.addEventListener('click', ModalView);
+    Modal.addEventListener('submit', addSpending);
+    BtnUpdateSpending.forEach((updateSpending) => {
+      updateSpending.addEventListener('click', getId);
+    });
+    DeleteSpending.forEach((Delete) => {
+      Delete.addEventListener('submit', deleteSpen);
+    });
+    CloseModal.addEventListener('click', ClassUpdate);
+    const Parametro = new URLSearchParams(window.location.search);
+    Id = parseInt(Parametro.get('id'));
+    CalcPrevisto();
+  } catch (error) {
     console.log(error);
-  });
-  closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    menuBtnChange();
-  });
-  Logout.addEventListener('click', Alert);
-  ModalAdd.addEventListener('click', ModalView);
-  Modal.addEventListener('submit', addSpending);
-  BtnUpdateSpending.forEach((updateSpending) => {
-    updateSpending.addEventListener('click', getId);
-  });
-  DeleteSpending.forEach((Delete) => {
-    Delete.addEventListener('submit', deleteSpen);
-  });
-  CloseModal.addEventListener('click', ClassUpdate);
-  const Parametro = new URLSearchParams(window.location.search);
-  Id = parseInt(Parametro.get('id'));
-  CalcPrevisto();
+  }
 });
 
 /* ***FUNCIONES*** */
