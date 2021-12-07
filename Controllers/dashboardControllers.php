@@ -1,8 +1,8 @@
 <?php 
     namespace Controllers;
 
-use Model\Gasto;
-use Model\Marca;
+    use Model\Gasto;
+    use Model\Categoria;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
@@ -135,7 +135,7 @@ use Model\Marca;
         }
         public static function getIdProducts($router, $View){
             $id = Validar();
-            $Marca = Marca::all();
+            $Categoria = Categoria::all();
             $producto = Producto::find($id);
             $Errores = Producto::getError();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -154,7 +154,7 @@ use Model\Marca;
                 'View' => $View,
                 'Errores' => $Errores,
                 'producto' => $producto, 
-                'Marca' => $Marca, 
+                'Categoria' => $Categoria, 
                 'id' => $id
             ]);
         }
@@ -248,7 +248,7 @@ use Model\Marca;
         public static function postProducts($router, $View){
             $Errores = Producto::getError();
             $producto = new Producto;
-            $Marca = Marca::all();
+            $Categoria = Categoria::all();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $producto = new Producto($_POST['producto']);
                 $Errores = $producto->validarProducto();
@@ -263,7 +263,7 @@ use Model\Marca;
                 'View' => $View,
                 'Errores' => $Errores,
                 'producto' => $producto,
-                'Marca' => $Marca
+                'Categoria' => $Categoria
             ]);
         }
     }
