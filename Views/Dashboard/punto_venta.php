@@ -2,7 +2,7 @@
     <div class="">
         <div class="row justify-content-center mb-5 pt-5">
         <!-- CATEGORIA-PRODUCTO-CANTIDAD -->
-            <div class="col-12 col-md-5 col-lg-4 fs-5 bg-warning rounded  py-5 ">
+            <div class="col-12 col-md-5 col-lg-4 fs-5 bg-warning rounded  py-5 mb-5">
                 <div class="row fs-5">
                     <div class="col justify-content-center align-items-center d-flex">
                         <p class="pe-2 pt-3">Categoría:</p>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="row bg-secondary align-items-center  py-3 mx-5 mb-2">
-            <div class="col-12 col-md-6 col-lg-7 text-center fs-5 d-flex">
+            <div class="col-12 col-lg-7 text-center fs-5 d-lg-flex">
                 <div class="col text-white">
                     Cantidad<br>
                     <input type="number" >
