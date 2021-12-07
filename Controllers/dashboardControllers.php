@@ -1,8 +1,8 @@
 <?php 
     namespace Controllers;
 
-use Model\Gasto;
-use Model\Marca;
+    use Model\Gasto;
+    use Model\Categoria;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
@@ -38,6 +38,9 @@ use Model\Marca;
                     break;
                 case 8: 
                     static::getGasto($router, $View);
+                    break;
+                case 9:
+                    static::getSale($router, $View);
                     break;
                 default: 
                     break;
@@ -132,7 +135,7 @@ use Model\Marca;
         }
         public static function getIdProducts($router, $View){
             $id = Validar();
-            $Marca = Marca::all();
+            $Categoria = Categoria::all();
             $producto = Producto::find($id);
             $Errores = Producto::getError();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -151,7 +154,7 @@ use Model\Marca;
                 'View' => $View,
                 'Errores' => $Errores,
                 'producto' => $producto, 
-                'Marca' => $Marca, 
+                'Categoria' => $Categoria, 
                 'id' => $id
             ]);
         }
@@ -169,7 +172,11 @@ use Model\Marca;
                 'id' => $id 
             ]);
         }
-        
+        public static function getSale($router, $View){
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View
+            ]);
+        }
         /* ******-----POST------****** */
         public static function searchUser($router, $View){
             $usuario = new Usuario;
@@ -241,7 +248,7 @@ use Model\Marca;
         public static function postProducts($router, $View){
             $Errores = Producto::getError();
             $producto = new Producto;
-            $Marca = Marca::all();
+            $Categoria = Categoria::all();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $producto = new Producto($_POST['producto']);
                 $Errores = $producto->validarProducto();
@@ -256,7 +263,7 @@ use Model\Marca;
                 'View' => $View,
                 'Errores' => $Errores,
                 'producto' => $producto,
-                'Marca' => $Marca
+                'Categoria' => $Categoria
             ]);
         }
     }

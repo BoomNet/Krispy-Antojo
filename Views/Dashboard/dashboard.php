@@ -13,36 +13,38 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list" id="Navegacion">
-      <li>
-        <a href="#">
-          <i class='bx bx-grid-alt'></i>
-          <span class="links_name">Dashboard</span>
+      <div class="<?php echo $rolSesion == "3" ? 'admin' : 'user';?>">
+        <li>
+          <a href="#">
+            <i class='bx bx-grid-alt'></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+        <a href="/Dashboard/dashboard?View=2">
+          <i class='bx bx-user usuario' ></i>
+          <span class="links_name">Usuario</span>
         </a>
-         <span class="tooltip">Dashboard</span>
-      </li>
-      <li>
-       <a href="/Dashboard/dashboard?View=2">
-         <i class='bx bx-user usuario' ></i>
-         <span class="links_name">Usuario</span>
-       </a>
-       <span class="tooltip">Usuario</span>
-     </li>
+        <span class="tooltip">Usuario</span>
+        </li>
+        <li>
+          <a href="/Dashboard/dashboard?View=5">
+            <i class='bx bx-pie-chart-alt-2 productos' ></i>
+            <span class="links_name">Productos</span>
+          </a>
+          <span class="tooltip">Productos</span>
+        </li>
+        <li>
+          <a href="/Dashboard/dashboard?View=8&id=<?php echo $idSession;?>">
+            <i class='bx bx-folder gastos'></i>
+            <span class="links_name">Gasto</span>
+          </a>
+          <span class="tooltip">Gasto</span>
+        </li>
+      </div>
      <li>
-       <a href="/Dashboard/dashboard?View=5">
-         <i class='bx bx-pie-chart-alt-2 productos' ></i>
-         <span class="links_name">Productos</span>
-       </a>
-       <span class="tooltip">Productos</span>
-     </li>
-     <li>
-       <a href="/Dashboard/dashboard?View=8&id=<?php echo $idSession;?>">
-         <i class='bx bx-folder gastos'></i>
-         <span class="links_name">Gasto</span>
-       </a>
-       <span class="tooltip">Gasto</span>
-     </li>
-     <li>
-       <a href="#">
+       <a href="/Dashboard/dashboard?View=9">
          <i class='bx bx-cart-alt ventas' ></i>
          <span class="links_name">Ventas</span>
        </a>
@@ -109,6 +111,8 @@
           <?php 
             include __DIR__ . "/table_gasto.php";
           break;
+        case 9: 
+          include __DIR__ . "/punto_venta.php";
         default:
           break;
       }
