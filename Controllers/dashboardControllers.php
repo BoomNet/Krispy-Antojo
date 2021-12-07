@@ -39,6 +39,9 @@ use Model\Marca;
                 case 8: 
                     static::getGasto($router, $View);
                     break;
+                case 9:
+                    static::getSale($router, $View);
+                    break;
                 default: 
                     break;
             }
@@ -169,7 +172,11 @@ use Model\Marca;
                 'id' => $id 
             ]);
         }
-        
+        public static function getSale($router, $View){
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View
+            ]);
+        }
         /* ******-----POST------****** */
         public static function searchUser($router, $View){
             $usuario = new Usuario;
