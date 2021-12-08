@@ -11,15 +11,15 @@
 
         public function __construct($args = [])
         {
-            $this->nombre_categoria = $args['nombre_categoria'] ?? '';
-            $this->descripcion_categoria = $args['descripcion_categoria'] ?? '';
+            $this->nombre_marca = $args['nombre_categoria'] ?? '';
+            $this->descripcion_marca = $args['descripcion_marca'] ?? '';
         }
 
         public function ValidarMarca(){
-            if(!$this->nombre_categoria){
+            if(!$this->nombre_marca){
                 self::$Errores[] = "La marca es obligatoria";
             }
-            if(!$this->descripcion_categoria){
+            if(!$this->descripcion_marca){
                 self::$Errores[] = "La descripción es obligatoria";
             }
             return self::$Errores;

@@ -1,7 +1,11 @@
 <?php 
     namespace Controllers;
+
+    use Model\Categoria;
     use Model\Gasto;
-    class APIControllers{
+    use Model\Producto;
+
+class APIControllers{
         public static function getGasto(){
             $gasto = new Gasto;
             $resultado = $gasto->allSpending();
@@ -28,6 +32,18 @@
                 echo json_encode(['guardado' => $guardado]);
             }
             
+        }
+
+        /* PUNTO DE VENTA */
+
+        public static function ObtenerCategoria(){
+            $categoria = Categoria::all();
+            echo json_encode(['resultado' => $categoria]);
+        }
+
+        public static function ObtenerProductos(){
+            $producto = Producto::all();
+            echo json_encode(['resultado' => $producto]);
         }
     }
 ?>

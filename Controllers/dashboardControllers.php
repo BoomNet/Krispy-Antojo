@@ -1,12 +1,13 @@
 <?php 
     namespace Controllers;
 
-    use Model\Gasto;
     use Model\Categoria;
+    use Model\Gasto;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
-    use MVC\Router;
+use Model\Venta;
+use MVC\Router;
     
     class dashboardControllers {
 
@@ -40,7 +41,7 @@
                     static::getGasto($router, $View);
                     break;
                 case 9:
-                    static::getSale($router, $View);
+                    static::Venta($router, $View);
                     break;
                 default: 
                     break;
@@ -172,7 +173,8 @@
                 'id' => $id 
             ]);
         }
-        public static function getSale($router, $View){
+
+        public static function Venta($router, $View){
             $router->render('/Dashboard/dashboard', [
                 'View' => $View
             ]);

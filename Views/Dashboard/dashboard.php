@@ -111,8 +111,9 @@
           <?php 
             include __DIR__ . "/table_gasto.php";
           break;
-        case 9: 
+        case 9:
           include __DIR__ . "/punto_venta.php";
+          break;
         default:
           break;
       }

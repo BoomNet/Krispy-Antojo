@@ -25,5 +25,9 @@
     $Router->get('/Dashboard/getGasto', [APIControllers::class, 'getGasto']);
     $Router->post('/Dashboard/editar-gasto', [APIControllers::class, 'editarGasto']);
     $Router->post('/Dashboard/eliminar-gasto', [APIControllers::class, 'eliminarGasto']);
+
+    //PUNTO DE VENTA
+    $Router->get('/Dashboard/venta', [APIControllers::class, 'ObtenerCategoria']);
+    $Router->get('/Dashboard/producto', [APIControllers::class, 'ObtenerProductos']);
     $Router->ComprobarRutas();
 ?>
