@@ -2,7 +2,7 @@
     <div class="">
         <div class="row justify-content-center mb-5 pt-5">
         <!-- CATEGORIA-PRODUCTO-CANTIDAD -->
-            <form action="">
+            <form id="formularioVenta">
                 <div class="col-12 col-md-5 col-lg-4 fs-5 bg-warning rounded  py-5 ">
                     <div class="row fs-5">
                         <div class="col justify-content-center align-items-center d-flex">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col text-center pt-5">
-                        <button type="button" class="btn btn-light text-center">Agregar</button>
+                        <button type="submit" class="btn btn-light text-center">Agregar</button>
                     </div>
                 </div>
             </form>

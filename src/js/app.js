@@ -11,10 +11,13 @@ const ModalAdd = document.querySelector('.add');
 const CloseModal = document.querySelector('.btn-close');
 const User = document.querySelector('.user');
 const Categoria = document.querySelector('#categoria');
+const InputProducto = document.querySelector('#producto');
+const Venta = document.querySelector('#formularioVenta');
 let SpendingData = [];
 let InfoProducto = [];
 let Id;
 let view;
+
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(view === 9){
       ObtenerCategoria();
       Categoria.addEventListener('change', categoriaSeleccionada);
+      Venta.addEventListener('submit', MostrarDetalleVenta);
     }
   } catch (error) {
     console.log(error);
@@ -275,8 +279,12 @@ async function categoriaSeleccionada(e){
   }).catch(error => {
     console.log(error);
   });
-  let ProductoObtenido = InfoProducto.filter(producto => parseInt(producto.cvecategoria_producto) === Indice);
-  MostrarProductos(ProductoObtenido);
+
+  //https://es.stackoverflow.com/questions/41202/eliminar-un-array-de-objetos-duplicados-en-javascript/41206
+  let set = new Set( InfoProducto.map( JSON.stringify ) )
+  let arrSinDuplicaciones = Array.from( set ).map( JSON.parse );
+  let ProductosDonas = arrSinDuplicaciones.filter(producto => parseInt(producto.cvecategoria_producto) === Indice);
+  MostrarProductos(ProductosDonas);
 }
 
 async function ProductoSeleccionado(){
@@ -289,14 +297,30 @@ async function ProductoSeleccionado(){
 }
 
 function MostrarProductos(Producto){
-  const InputProducto = document.querySelector('#producto');
+  LimpiarHTML();
   Producto.forEach(producto => {
     const {id, nombre_producto} = producto;
+    
     const OpcionProducto = document.createElement('OPTION');
     OpcionProducto.value = id;
     OpcionProducto.textContent = nombre_producto;
     InputProducto.appendChild(OpcionProducto);
   });
+}
+function MostrarDetalleVenta(e){
+  e.preventDefault();
+  const Categoria = document.querySelector('#categoria');
+  const Producto = document.querySelector('#producto');
+  let IndiceCategoria = Categoria.selectedIndex;
+  let TextoCategoria = Categoria.options[IndiceCategoria].text;
+  let IndiceProducto = Producto.selectedIndex;
+  let TextoProducto = Producto.options[IndiceProducto].text;
+  
+}
+function LimpiarHTML(){
+  while(InputProducto.firstChild){
+    InputProducto.removeChild(InputProducto.firstChild);
+  }
 }
 /* ***SWEET ALERT*** */
 function Alert(e){
