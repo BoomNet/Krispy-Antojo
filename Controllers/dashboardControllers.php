@@ -136,7 +136,7 @@ use MVC\Router;
         }
         public static function getIdProducts($router, $View){
             $id = Validar();
-            $Marca = Categoria::all();
+            $Categoria = Categoria::all();
             $producto = Producto::find($id);
             $Errores = Producto::getError();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -155,7 +155,7 @@ use MVC\Router;
                 'View' => $View,
                 'Errores' => $Errores,
                 'producto' => $producto, 
-                'Marca' => $Marca, 
+                'Categoria' => $Categoria, 
                 'id' => $id
             ]);
         }
@@ -179,7 +179,6 @@ use MVC\Router;
                 'View' => $View
             ]);
         }
-        
         /* ******-----POST------****** */
         public static function searchUser($router, $View){
             $usuario = new Usuario;
@@ -251,7 +250,7 @@ use MVC\Router;
         public static function postProducts($router, $View){
             $Errores = Producto::getError();
             $producto = new Producto;
-            $Marca = Categoria::all();
+            $Categoria = Categoria::all();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $producto = new Producto($_POST['producto']);
                 $Errores = $producto->validarProducto();
@@ -266,7 +265,7 @@ use MVC\Router;
                 'View' => $View,
                 'Errores' => $Errores,
                 'producto' => $producto,
-                'Marca' => $Marca
+                'Categoria' => $Categoria
             ]);
         }
     }

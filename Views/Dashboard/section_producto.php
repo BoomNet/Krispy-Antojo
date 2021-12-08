@@ -26,9 +26,9 @@
                 <label class="form-label">Nombre de la marca</label>
                 <select class="form-select" name="producto[cvecategoria_producto]">
                     <option selected disabled>Selecciona una marca...</option>
-                    <?php foreach($Marca as $marca):?>
-                      <option <?php echo $producto->cvecategoria_producto === $marca->id ? 'selected' : '';?>
-                          value="<?php echo $marca->id;?>"><?php echo $marca->nombre_categoria;?>
+                    <?php foreach($Categoria as $categoria):?>
+                      <option <?php echo $producto->cvecategoria_producto === $categoria->id ? 'selected' : '';?>
+                          value="<?php echo $categoria->id;?>"><?php echo $categoria->nombre_categoria;?>
                       </option>
                     <?php endforeach;?>
                 </select>
