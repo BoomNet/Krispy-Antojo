@@ -1,12 +1,13 @@
 <?php 
     namespace Controllers;
 
-use Model\Gasto;
-use Model\Marca;
+    use Model\Categoria;
+    use Model\Gasto;
     use Model\Usuario;
     use Model\Rol;
     use Model\Producto;
-    use MVC\Router;
+use Model\Venta;
+use MVC\Router;
     
     class dashboardControllers {
 
@@ -38,6 +39,9 @@ use Model\Marca;
                     break;
                 case 8: 
                     static::getGasto($router, $View);
+                    break;
+                case 9:
+                    static::Venta($router, $View);
                     break;
                 default: 
                     break;
@@ -132,7 +136,7 @@ use Model\Marca;
         }
         public static function getIdProducts($router, $View){
             $id = Validar();
-            $Marca = Marca::all();
+            $Marca = Categoria::all();
             $producto = Producto::find($id);
             $Errores = Producto::getError();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -167,6 +171,12 @@ use Model\Marca;
                 'Total' => $Total,
                 'Previsto' => $Previsto,
                 'id' => $id 
+            ]);
+        }
+
+        public static function Venta($router, $View){
+            $router->render('/Dashboard/dashboard', [
+                'View' => $View
             ]);
         }
         
@@ -241,7 +251,7 @@ use Model\Marca;
         public static function postProducts($router, $View){
             $Errores = Producto::getError();
             $producto = new Producto;
-            $Marca = Marca::all();
+            $Marca = Categoria::all();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $producto = new Producto($_POST['producto']);
                 $Errores = $producto->validarProducto();

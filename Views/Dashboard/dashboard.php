@@ -42,7 +42,7 @@
        <span class="tooltip">Gasto</span>
      </li>
      <li>
-       <a href="#">
+       <a href="/Dashboard/dashboard?View=9">
          <i class='bx bx-cart-alt ventas' ></i>
          <span class="links_name">Ventas</span>
        </a>
@@ -108,6 +108,9 @@
             <h1 class="text-center pt-5">Tabla de Gastos</h1>
           <?php 
             include __DIR__ . "/table_gasto.php";
+          break;
+        case 9:
+          include __DIR__ . "/punto_venta.php";
           break;
         default:
           break;

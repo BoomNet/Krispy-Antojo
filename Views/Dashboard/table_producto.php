@@ -30,7 +30,7 @@
                                 <th>Precio Compra</th>
                                 <th>Precio Venta</th>
                                 <th>Stock</th>
-                                <th>Marca</th>
+                                <th>Categoría</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -43,7 +43,7 @@
                                     <td><?php echo $products['precioCompra_producto']?></td>
                                     <td><?php echo $products['precioVenta_producto']?></td>
                                     <td><?php echo $products['stock_producto']?></td>
-                                    <td><?php echo $products['nombre_marca']?></td>
+                                    <td><?php echo $products['nombre_categoria']?></td>
                                     <td class="acciones-edit">
                                         <a href="/Dashboard/dashboard?View=7&id=<?php echo $products['id'];?>">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

@@ -1,17 +1,17 @@
 <?php 
     namespace Model;
 
-    class Marca extends ActiveRecord{
-        public static $Tabla = "marca";
-        public static $columnaDB = ['id', 'nombre_marca', 'descripcion_marca'];
+    class Categoria extends ActiveRecord{
+        public static $Tabla = "categoria";
+        public static $columnaDB = ['id', 'nombre_categoria', 'descripcion_categoria'];
         
         public $id;
-        public $nombre_marca;
-        public $descripcion_marca;
+        public $nombre_categoria;
+        public $descripcion_categoria;
 
         public function __construct($args = [])
         {
-            $this->nombre_marca = $args['nombre_marca'] ?? '';
+            $this->nombre_marca = $args['nombre_categoria'] ?? '';
             $this->descripcion_marca = $args['descripcion_marca'] ?? '';
         }
 

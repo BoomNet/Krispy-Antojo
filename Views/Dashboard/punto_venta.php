@@ -2,33 +2,35 @@
     <div class="">
         <div class="row justify-content-center mb-5 pt-5">
         <!-- CATEGORIA-PRODUCTO-CANTIDAD -->
-            <div class="col-12 col-md-5 col-lg-4 fs-5 bg-warning rounded  py-5 ">
-                <div class="row fs-5">
-                    <div class="col justify-content-center align-items-center d-flex">
-                        <p class="pe-2 pt-3">Categoría:</p>
-                        <select name="" disabled="disabled" style="width: 50%;">
-                            <option selected>Selecione una categoría</option>
-                        </select>
+            <form action="">
+                <div class="col-12 col-md-5 col-lg-4 fs-5 bg-warning rounded  py-5 ">
+                    <div class="row fs-5">
+                        <div class="col justify-content-center align-items-center d-flex">
+                            <p class="pe-2 pt-3">Categoría:</p>
+                            <select name="" id="categoria" style="width: 50%;">
+                                <option selected disabled>Selecione una categoría</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col justify-content-center align-items-center d-flex">
+                            <p class="pe-3 pt-3">Producto:</p>
+                            <select name="" style="width: 50%;" id="producto">
+                                <option selected>Selecione un producto</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col justify-content-center align-items-center d-flex">
+                            <p class="pe-2 pt-3">Cantidad:</p>
+                            <input type="number" style="width: 50%;">
+                        </div>
+                    </div>
+                    <div class="col text-center pt-5">
+                        <button type="button" class="btn btn-light text-center">Agregar</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col justify-content-center align-items-center d-flex">
-                        <p class="pe-3 pt-3">Producto:</p>
-                        <select name="" disabled="disabled" style="width: 50%;">
-                            <option selected>Selecione un producto</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col justify-content-center align-items-center d-flex">
-                        <p class="pe-2 pt-3">Cantidad:</p>
-                        <input type="number" disabled style="width: 50%;">
-                    </div>
-                </div>
-                <div class="col text-center pt-5">
-                    <button type="button" class="btn btn-light text-center">Agregar</button>
-                </div>
-            </div>
+            </form>
         <!-- TABLA -->
             <div class="col-12 col-md-6 col-lg-7 fs-5 bg-white border rounded ms-3">
                 <div class="col">
