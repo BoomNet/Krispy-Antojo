@@ -10,34 +10,45 @@ const Update = document.querySelector('.updateSpendig');
 const ModalAdd = document.querySelector('.add');
 const CloseModal = document.querySelector('.btn-close');
 const User = document.querySelector('.user');
+const Categoria = document.querySelector('#categoria');
 let SpendingData = [];
+let InfoProducto = [];
 let Id;
+let view;
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     UserRol();
+    const Parametro = new URLSearchParams(window.location.search);
+    Id = parseInt(Parametro.get('id'));
+    const Vista = new URLSearchParams(window.location.search);
+    view = parseInt(Vista.get('View'));
+    closeBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("open");
+      menuBtnChange();
+    });
     await GetSpending().then((x)=>{
       SpendingData.push(...x.resultado);
     }).catch(error => {
       console.log(error);
     });
-    closeBtn.addEventListener("click", ()=>{
-      sidebar.classList.toggle("open");
-      menuBtnChange();
-    });
+    if(view === 8){
+      ModalAdd.addEventListener('click', ModalView);
+      Modal.addEventListener('submit', addSpending);
+      BtnUpdateSpending.forEach((updateSpending) => {
+        updateSpending.addEventListener('click', getId);
+      });
+      DeleteSpending.forEach((Delete) => {
+        Delete.addEventListener('submit', deleteSpen);
+      });
+      CloseModal.addEventListener('click', ClassUpdate);
+      CalcPrevisto();
+    }
     Logout.addEventListener('click', Alert);
-    ModalAdd.addEventListener('click', ModalView);
-    Modal.addEventListener('submit', addSpending);
-    BtnUpdateSpending.forEach((updateSpending) => {
-      updateSpending.addEventListener('click', getId);
-    });
-    DeleteSpending.forEach((Delete) => {
-      Delete.addEventListener('submit', deleteSpen);
-    });
-    CloseModal.addEventListener('click', ClassUpdate);
-    const Parametro = new URLSearchParams(window.location.search);
-    Id = parseInt(Parametro.get('id'));
-    CalcPrevisto();
+    if(view === 9){
+      ObtenerCategoria();
+      Categoria.addEventListener('change', categoriaSeleccionada);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -228,6 +239,64 @@ function ImprimirAlerta(mensaje){
     AlertaP.classList.remove('error-alerta');
     AlertaP.textContent = '';
   },5000);
+}
+
+/* ***PUNTO DE VENTA*** */
+
+async function ObtenerCategoria(){
+  try {
+    const url = "http://localhost:3000/Dashboard/venta";
+    const respuesta = await fetch(url, {
+      method: 'GET'
+    });
+    const resultado = await respuesta.json();
+    for(let i=0; i<resultado.resultado.length; i++){
+      const {id, nombre_categoria} = resultado.resultado[i];
+      MostrarCategoria(id, nombre_categoria);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function MostrarCategoria(id, nombre_categoria ){
+  const OpcionCategoria = document.createElement('OPTION');
+  OpcionCategoria.value = id;
+  OpcionCategoria.textContent = nombre_categoria;
+  Categoria.appendChild(OpcionCategoria);
+}
+
+async function categoriaSeleccionada(e){
+  e.preventDefault();
+  let Indice = e.target.selectedIndex;
+  let TextoEscogido = e.target.options[Indice].text;
+  await ProductoSeleccionado().then(x => {
+    InfoProducto.push(...x.resultado);
+  }).catch(error => {
+    console.log(error);
+  });
+  let ProductoObtenido = InfoProducto.filter(producto => parseInt(producto.cvecategoria_producto) === Indice);
+  MostrarProductos(ProductoObtenido);
+}
+
+async function ProductoSeleccionado(){
+  const url = "http://localhost:3000/Dashboard/producto";
+  const TodosProductos = await fetch(url, {
+    method: 'GET'
+  });
+  const ResultadoProductos = await TodosProductos.json();
+  return ResultadoProductos;
+}
+
+function MostrarProductos(Producto){
+  const InputProducto = document.querySelector('#producto');
+  Producto.forEach(producto => {
+    const {id, nombre_producto} = producto;
+    const OpcionProducto = document.createElement('OPTION');
+    OpcionProducto.value = id;
+    OpcionProducto.textContent = nombre_producto;
+    InputProducto.appendChild(OpcionProducto);
+  });
 }
 /* ***SWEET ALERT*** */
 function Alert(e){
