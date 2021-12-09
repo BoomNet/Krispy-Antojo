@@ -11,10 +11,22 @@ const ModalAdd = document.querySelector('.add');
 const CloseModal = document.querySelector('.btn-close');
 const User = document.querySelector('.user');
 const Categoria = document.querySelector('#categoria');
+const InputProducto = document.querySelector('#producto');
+const Venta = document.querySelector('#formularioVenta');
+const Detalles = document.querySelector('#detallesBody');
 let SpendingData = [];
 let InfoProducto = [];
 let Id;
 let view;
+let ProductosDonas;
+let DetalleVenta = [];
+let InfoDetalle = [];
+let objVenta = {
+  id: '', 
+  nombre_producto = '', 
+  descripcion_producto = '',
+  precioVenta_producto = ''
+};
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -48,6 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(view === 9){
       ObtenerCategoria();
       Categoria.addEventListener('change', categoriaSeleccionada);
+      Venta.addEventListener('submit', MostrarDetalleVenta);
     }
   } catch (error) {
     console.log(error);
@@ -118,7 +131,6 @@ function getId(e){
   }
   document.querySelector('#idgasto').value = buttonId;
   let Spend = SpendingData.find(x => x.id === buttonId);
-  console.log(Spend);
   AddValues(Spend);
 }
 function AddValues(spend){
@@ -275,8 +287,12 @@ async function categoriaSeleccionada(e){
   }).catch(error => {
     console.log(error);
   });
-  let ProductoObtenido = InfoProducto.filter(producto => parseInt(producto.cvecategoria_producto) === Indice);
-  MostrarProductos(ProductoObtenido);
+
+  //https://es.stackoverflow.com/questions/41202/eliminar-un-array-de-objetos-duplicados-en-javascript/41206
+  let set = new Set( InfoProducto.map( JSON.stringify ) )
+  let arrSinDuplicaciones = Array.from( set ).map( JSON.parse );
+  ProductosDonas = arrSinDuplicaciones.filter(producto => parseInt(producto.cvecategoria_producto) === Indice);
+  MostrarProductos(ProductosDonas);
 }
 
 async function ProductoSeleccionado(){
@@ -289,14 +305,122 @@ async function ProductoSeleccionado(){
 }
 
 function MostrarProductos(Producto){
-  const InputProducto = document.querySelector('#producto');
+  LimpiarOption();
   Producto.forEach(producto => {
     const {id, nombre_producto} = producto;
+    
     const OpcionProducto = document.createElement('OPTION');
     OpcionProducto.value = id;
     OpcionProducto.textContent = nombre_producto;
     InputProducto.appendChild(OpcionProducto);
   });
+}
+function MostrarDetalleVenta(e){
+  e.preventDefault();
+  const Producto = document.querySelector('#producto');
+  const Cantidad = document.querySelector('#cantidad').value;
+  let Indice = Producto.selectedIndex;
+  let TextoEscogido = Producto.options[Indice].text;
+  let Detalle = ProductosDonas.filter(detalles => detalles.nombre_producto === TextoEscogido);
+  let NuevaCantidad = 0;
+  let DetalleVentas = {
+  }
+  Detalle.forEach(idArray => {
+    const {id} = idArray;
+    DetalleVentas = {id, Cantidad};
+  });
+  DetalleVenta = [...DetalleVenta, ...Detalle];
+  DetalleVenta.forEach(prueba => {
+    const {id, nombre_producto, descripcion_producto, precioVenta_producto} = prueba;
+    objVenta = {
+      id, nombre_producto, descripcion_producto, precioVenta_producto, Cantidad
+    };
+    
+  })
+  InfoDetalle = [...InfoDetalle, objVenta];
+
+  let contador = 0;
+  const Existe = InfoDetalle.some((detalle) => {
+    if(parseInt(detalle.id) === parseInt(DetalleVentas.id) ){
+      NuevaCantidad += parseInt(detalle.Cantidad); 
+      contador++;
+      if(contador > 1){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      NuevaCantidad = 0;
+    }
+  }); 
+  if(Existe){
+    //Actualizamos la cantidad
+    /* let NuevaCantidad = InfoDetalle.reduce((total, siguiente) => {
+      console.log(siguiente.Cantidad);
+      return parseInt(total) + parseInt(siguiente.Cantidad); */
+      /* if(parseInt(data.id) === parseInt(DetalleVentas.id)){
+        NuevaCantidad += parseInt(data.Cantidad);
+        console.log(NuevaCantidad);
+      } */
+    //});
+    const indiceElemento = InfoDetalle.findIndex(el => el.id === DetalleVentas.id);
+    InfoDetalle[indiceElemento].Cantidad = NuevaCantidad;
+
+  }
+  ImprimirDetalle(InfoDetalle);
+}
+
+function ImprimirDetalle(detalles){
+  LimpiarTabla();
+  detalles.forEach(detalle => {
+    const {id, nombre_producto, descripcion_producto, precioVenta_producto, Cantidad} = detalle;
+    const trDetalles = document.createElement('TR');
+    const tdNombreProducto = document.createElement('TD')
+    tdNombreProducto.textContent = nombre_producto;
+    const tdDescripcion = document.createElement('TD');
+    tdDescripcion.textContent = descripcion_producto;
+    const tdPrecio = document.createElement('TD');
+    tdPrecio.textContent = precioVenta_producto;
+    const tdCantidad = document.createElement('TD');
+    tdCantidad.textContent = Cantidad;
+    const Total = document.createElement('TD');
+    Total.textContent = `$${precioVenta_producto * Cantidad}`;
+    const tdBoton = document.createElement('TD');
+    const Boton = document.createElement('BUTTON');
+    Boton.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+      </svg
+    `;
+    Boton.onclick = () => {
+      EliminarProducto(id);
+    }
+    Boton.classList.add('btn', 'eliminar');
+    tdBoton.appendChild(Boton);
+    trDetalles.appendChild(tdNombreProducto);
+    trDetalles.appendChild(tdDescripcion);
+    trDetalles.appendChild(tdPrecio);
+    trDetalles.appendChild(tdCantidad);
+    trDetalles.appendChild(Total);
+    trDetalles.appendChild(tdBoton);
+    Detalles.appendChild(trDetalles);
+  });
+  Venta.reset();
+}
+
+function EliminarProducto(id){
+
+}
+function LimpiarTabla(){
+  while(Detalles.firstChild){
+    Detalles.removeChild(Detalles.firstChild);
+  }
+}
+function LimpiarOption(){
+  while(InputProducto.firstChild){
+    InputProducto.removeChild(InputProducto.firstChild);
+  }
 }
 /* ***SWEET ALERT*** */
 function Alert(e){
