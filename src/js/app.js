@@ -322,7 +322,6 @@ function MostrarDetalleVenta(e){
   let Indice = Producto.selectedIndex;
   let TextoEscogido = Producto.options[Indice].text;
   let Detalle = ProductosDonas.filter(detalles => detalles.nombre_producto === TextoEscogido);
-  let NuevaCantidad = 0;
   let DetalleVentas = {
   }
   Detalle.forEach(idArray => {
@@ -337,39 +336,28 @@ function MostrarDetalleVenta(e){
     };
     
   })
-  InfoDetalle = [...InfoDetalle, objVenta];
-
-  let contador = 0;
+  let contador = 1;
   const Existe = InfoDetalle.some((detalle) => {
     if(parseInt(detalle.id) === parseInt(DetalleVentas.id) ){
-      NuevaCantidad += parseInt(detalle.Cantidad); 
       contador++;
       if(contador > 1){
         return true;
       }else{
         return false;
       }
-    }else{
-      NuevaCantidad = 0;
     }
   }); 
   if(Existe){
     //Actualizamos la cantidad
-    /* let NuevaCantidad = InfoDetalle.reduce((total, siguiente) => {
-      console.log(siguiente.Cantidad);
-      return parseInt(total) + parseInt(siguiente.Cantidad); */
-      /* if(parseInt(data.id) === parseInt(DetalleVentas.id)){
-        NuevaCantidad += parseInt(data.Cantidad);
-        console.log(NuevaCantidad);
-      } */
-    //});
-    const indiceElemento = InfoDetalle.findIndex(el => el.id === DetalleVentas.id);
-    InfoDetalle[indiceElemento].Cantidad = NuevaCantidad;
-
+    const indiceElemento = InfoDetalle.find(el => el.id === DetalleVentas.id);
+    let Anterior = parseInt(indiceElemento.Cantidad);
+    let Actual = parseInt(Cantidad)
+    indiceElemento.Cantidad = Anterior + Actual;
+  }else{
+    InfoDetalle = [...InfoDetalle, objVenta];
   }
   ImprimirDetalle(InfoDetalle);
 }
-
 function ImprimirDetalle(detalles){
   LimpiarTabla();
   detalles.forEach(detalle => {
