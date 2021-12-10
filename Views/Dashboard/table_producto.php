@@ -1,4 +1,4 @@
-<div class="rounded-p m-5">
+<div class="rounded-p mx-1 mt-5 pt-5">
     <div class="row">
             <div class="col-12"><h1 class="h2 text-center ">Tabla de Productos</h1></div>
         </div>

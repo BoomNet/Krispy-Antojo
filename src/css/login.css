@@ -108,6 +108,8 @@ a{
   z-index: 99;
   transition: all 0.5s ease;
 }
+
+
 .sidebar.open{
   width: 250px;
 }
@@ -342,6 +344,17 @@ a{
   .sidebar li .tooltip{
     display: none;
   }
+}
+@media screen and (max-width: 767px){
+  .home-section{
+    position: unset;
+    background: #fff;
+    min-height: 100vh;
+    top: 0;
+    left: 0;
+    width:unset;
+    transition: all 0.5s ease;
+    }
 }
 .logo_krispy{
   margin: 0 auto;

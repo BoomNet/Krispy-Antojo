@@ -1,4 +1,4 @@
-<div class="bg-body rounded-p m-5">
+<div class="bg-body rounded-p mt-5 pt-5">
     <div class="row">
             <div class="col-12"><h1 class="h2 text-center ">Tabla de Usuarios</h1></div>
         </div>
