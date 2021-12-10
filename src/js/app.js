@@ -14,6 +14,9 @@ const Categoria = document.querySelector('#categoria');
 const InputProducto = document.querySelector('#producto');
 const Venta = document.querySelector('#formularioVenta');
 const Detalles = document.querySelector('#detallesBody');
+const Cancelar = document.querySelector('.btn-cancelar');
+let TotalDetalle = 0;
+let TotalVenta = 0;
 let SpendingData = [];
 let InfoProducto = [];
 let Id;
@@ -61,6 +64,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       ObtenerCategoria();
       Categoria.addEventListener('change', categoriaSeleccionada);
       Venta.addEventListener('submit', MostrarDetalleVenta);
+      TotalPago();
+      Cancelar.addEventListener('click', CancelarVenta)
     }
   } catch (error) {
     console.log(error);
@@ -373,6 +378,8 @@ function ImprimirDetalle(detalles){
     tdCantidad.textContent = Cantidad;
     const Total = document.createElement('TD');
     Total.textContent = `$${precioVenta_producto * Cantidad}`;
+    TotalDetalle += (precioVenta_producto * Cantidad);
+    console.log(TotalDetalle);
     const tdBoton = document.createElement('TD');
     const Boton = document.createElement('BUTTON');
     Boton.onclick = () => {
@@ -395,12 +402,60 @@ function ImprimirDetalle(detalles){
     trDetalles.appendChild(tdBoton);
     Detalles.appendChild(trDetalles);
   });
+  let TotalPagar = document.querySelector('#totalPagar') || 0;
+  TotalVenta = TotalDetalle;
+  TotalPagar.value = TotalVenta;
+  TotalDetalle = 0; 
   Venta.reset();
 }
-
 function EliminarProducto(id){
   InfoDetalle = InfoDetalle.filter(info => info.id !== id);
   ImprimirDetalle(InfoDetalle);
+}
+function TotalPago(){
+  const CantidadPagar = document.querySelector('#cantidadPagar');
+  const Cambio = document.querySelector('#cambioPago');
+  
+  TotalPagar = TotalDetalle
+}
+function CancelarVenta(e){
+  e.preventDefault();
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
+  swalWithBootstrapButtons.fire({
+    title: '¿Estas seguro de cancelar la venta?',
+    text: "Esta accion no se puede revertir!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Si, Borrar!',
+    cancelButtonText: 'No, Cancelar!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      InfoDetalle = [];
+      swalWithBootstrapButtons.fire(
+        'Borrado!',
+        'Tu venta ha sido eliminada.',
+        'success'
+      );
+      ImprimirDetalle(InfoDetalle);
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelado',
+        'Tu venta ha sido conservada',
+        'error'
+      )
+    }
+  })
 }
 function LimpiarTabla(){
   while(Detalles.firstChild){

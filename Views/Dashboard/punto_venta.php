@@ -54,20 +54,20 @@
         <div class="col-12 col-md-6 col-lg-7 text-center fs-5 d-lg-flex mb-3 mb-lg-0">
             <div class="col text-white">
                 Cantidad<br>
-                <input type="number" >
+                <input type="number" id="cantidadPagar">
             </div>
             <div class="col text-white">
                 Cambio<br>
-                <input type="number" disabled>
+                <input type="number" id="cambioPago" disabled>
             </div>
             <div class="col text-white">
                 Total<br>
-                <input type="number" disabled>
+                <input type="number" id="totalPagar" disabled>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-5 text-center d-flex">
             <div class="col">
-                <button type="button" class="btn btn-lg btn-danger">Cancelar Venta</button>
+                <button type="button" class="btn btn-lg btn-danger btn-cancelar">Cancelar Venta</button>
             </div>
             <div class="col">
                 <button type="button" class="btn btn-lg btn-success">Finalizar Venta</button>
