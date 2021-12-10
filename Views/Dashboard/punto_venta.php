@@ -1,5 +1,5 @@
 <div class="bg-light  m-5">
-    <form method="POST">
+    <form method="POST" id="finalizarVenta">
         <!-- CATEGORIA-PRODUCTO-CANTIDAD -->
         <div class="row justify-content-center d-flex mb-5 pt-5" id="formularioVenta">
             <div class="col-12 col-md-5 col-lg-4 fs-5 bg-warning rounded  py-5 ">
@@ -71,7 +71,7 @@
                     <button type="button" class="btn btn-lg btn-danger btn-cancelar">Cancelar Venta</button>
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-lg btn-success" id="finalizarVenta">Finalizar Venta</button>
+                    <button type="submit" class="btn btn-lg btn-success">Finalizar Venta</button>
                 </div>
             </div>
         </div>

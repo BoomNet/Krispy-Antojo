@@ -17,6 +17,13 @@ const Detalles = document.querySelector('#detallesBody');
 const CantidadPagar = document.querySelector('#cantidadPagar');
 const Cancelar = document.querySelector('.btn-cancelar');
 const FinalizarVenta = document.querySelector('#finalizarVenta');
+let objVentaProductos = {
+  cveusuario_venta :'',
+  total_venta : '',
+  cantidad_venta: '',
+  pago_venta: '',
+  cambio_venta: ''
+};
 let TotalDetalle = 0;
 let TotalVenta = 0;
 let SpendingData = [];
@@ -32,14 +39,7 @@ let objVenta = {
   descripcion_producto : '',
   precioVenta_producto : ''
 };
-
-/* let Venta = {
-  cveusuario_venta :'',
-  total_venta : '',
-  cantidad_venta: '',
-  pago_venta: '',
-  cambio_venta: ''
-}; */
+let CantidadProductos = 0, CantidadTotalProductos = 0;
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -71,11 +71,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     Logout.addEventListener('click', Alert);
     if(view === 9){
+      objVentaProductos.cveusuario_venta = Id;
       ObtenerCategoria();
       Categoria.addEventListener('change', categoriaSeleccionada);
       Venta.addEventListener('click', MostrarDetalleVenta);
       CantidadPagar.addEventListener('blur', Cambio);
       Cancelar.addEventListener('click', CancelarVenta)
+      FinalizarVenta.addEventListener('submit', AgregarVenta);
     }
   } catch (error) {
     console.log(error);
@@ -386,6 +388,7 @@ function ImprimirDetalle(detalles){
     tdPrecio.textContent = precioVenta_producto;
     const tdCantidad = document.createElement('TD');
     tdCantidad.textContent = Cantidad;
+    CantidadProductos += parseInt(Cantidad);
     const Total = document.createElement('TD');
     Total.textContent = `$${precioVenta_producto * Cantidad}`;
     TotalDetalle += (precioVenta_producto * Cantidad);
@@ -415,6 +418,11 @@ function ImprimirDetalle(detalles){
   TotalVenta = TotalDetalle;
   TotalPagar.value = TotalVenta;
   TotalDetalle = 0; 
+  CantidadTotalProductos = CantidadProductos;
+  CantidadProductos = 0;
+
+  objVentaProductos.total_venta = TotalVenta
+  objVentaProductos.cantidad_venta = CantidadTotalProductos;
 }
 function EliminarProducto(id){
   InfoDetalle = InfoDetalle.filter(info => info.id !== id);
@@ -424,6 +432,8 @@ function Cambio(e){
   let Cantidad = parseInt(e.target.value);
   const Cambio = document.querySelector('#cambioPago');
   Cambio.value = Cantidad  - TotalVenta;
+  objVentaProductos.pago_venta = Cantidad;
+  objVentaProductos.cambio_venta = Cantidad - TotalVenta;
 }
 function CancelarVenta(e){
   e.preventDefault();
@@ -463,6 +473,11 @@ function CancelarVenta(e){
       )
     }
   })
+}
+
+function AgregarVenta(e){
+  e.preventDefault();
+  console.log('Funciona');
 }
 function LimpiarTabla(){
   while(Detalles.firstChild){
