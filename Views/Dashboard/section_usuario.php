@@ -1,4 +1,4 @@
-<div class="bg-light rounded m-5 usuario">
+<div class="bg-light rounded  usuario">
     <?php if($Errores):?>
       <?php foreach($Errores as $Error):?>
         <div class="text-start alert alert-danger d-flex bd-highlight mx-5" role="alert">

@@ -1,4 +1,4 @@
-<div class="rounded-p m-5 mt-5">
+<div class="rounded-p mt-5 ">
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -34,7 +34,7 @@
         </div>
     </div>
 </div>
-<div class="rounded-p m-5">
+<div class="rounded-p mx-1">
     <div class="gastos">
         <h2>Previsto: $<?php echo $Previsto;?></h2>
         <h2>Real: $<?php echo $Total;?></h2>

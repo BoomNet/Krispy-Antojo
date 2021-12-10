@@ -1,4 +1,4 @@
-<div class="bg-light  m-5">
+<div class="bg-light mt-1">
     <form method="POST" id="finalizarVenta">
         <!-- CATEGORIA-PRODUCTO-CANTIDAD -->
         <div class="row justify-content-center d-flex mb-5 pt-5" id="formularioVenta">
