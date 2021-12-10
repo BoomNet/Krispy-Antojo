@@ -29,5 +29,6 @@
     //PUNTO DE VENTA
     $Router->get('/Dashboard/venta', [APIControllers::class, 'ObtenerCategoria']);
     $Router->get('/Dashboard/producto', [APIControllers::class, 'ObtenerProductos']);
+    $Router->post('/Dashboard/agregarVenta', [APIControllers::class, 'AgregarVenta']);
     $Router->ComprobarRutas();
 ?>

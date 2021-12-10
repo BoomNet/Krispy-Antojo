@@ -4,6 +4,7 @@
     use Model\Categoria;
     use Model\Gasto;
     use Model\Producto;
+    use Model\Venta;
 
 class APIControllers{
         public static function getGasto(){
@@ -44,6 +45,12 @@ class APIControllers{
         public static function ObtenerProductos(){
             $producto = Producto::all();
             echo json_encode(['resultado' => $producto]);
+        }
+
+        public static function AgregarVenta(){
+            $venta = new Venta($_POST);
+            $resultado = $venta->Guardar();
+            echo json_encode(['resultado' => $resultado]);
         }
     }
 ?>

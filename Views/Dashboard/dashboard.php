@@ -44,7 +44,7 @@
         </li>
       </div>
      <li>
-       <a href="/Dashboard/dashboard?View=9">
+       <a href="/Dashboard/dashboard?View=9&id=<?php echo $idSession;?>">
          <i class='bx bx-cart-alt ventas' ></i>
          <span class="links_name">Ventas</span>
        </a>

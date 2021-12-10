@@ -12,9 +12,11 @@ const CloseModal = document.querySelector('.btn-close');
 const User = document.querySelector('.user');
 const Categoria = document.querySelector('#categoria');
 const InputProducto = document.querySelector('#producto');
-const Venta = document.querySelector('#formularioVenta');
+const Venta = document.querySelector('.agregarProducto');
 const Detalles = document.querySelector('#detallesBody');
+const CantidadPagar = document.querySelector('#cantidadPagar');
 const Cancelar = document.querySelector('.btn-cancelar');
+const FinalizarVenta = document.querySelector('#finalizarVenta');
 let TotalDetalle = 0;
 let TotalVenta = 0;
 let SpendingData = [];
@@ -26,10 +28,18 @@ let DetalleVenta = [];
 let InfoDetalle = [];
 let objVenta = {
   id: '', 
-  nombre_producto = '', 
-  descripcion_producto = '',
-  precioVenta_producto = ''
+  nombre_producto : '', 
+  descripcion_producto : '',
+  precioVenta_producto : ''
 };
+
+/* let Venta = {
+  cveusuario_venta :'',
+  total_venta : '',
+  cantidad_venta: '',
+  pago_venta: '',
+  cambio_venta: ''
+}; */
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -63,8 +73,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(view === 9){
       ObtenerCategoria();
       Categoria.addEventListener('change', categoriaSeleccionada);
-      Venta.addEventListener('submit', MostrarDetalleVenta);
-      TotalPago();
+      Venta.addEventListener('click', MostrarDetalleVenta);
+      CantidadPagar.addEventListener('blur', Cambio);
       Cancelar.addEventListener('click', CancelarVenta)
     }
   } catch (error) {
@@ -379,7 +389,6 @@ function ImprimirDetalle(detalles){
     const Total = document.createElement('TD');
     Total.textContent = `$${precioVenta_producto * Cantidad}`;
     TotalDetalle += (precioVenta_producto * Cantidad);
-    console.log(TotalDetalle);
     const tdBoton = document.createElement('TD');
     const Boton = document.createElement('BUTTON');
     Boton.onclick = () => {
@@ -406,17 +415,15 @@ function ImprimirDetalle(detalles){
   TotalVenta = TotalDetalle;
   TotalPagar.value = TotalVenta;
   TotalDetalle = 0; 
-  Venta.reset();
 }
 function EliminarProducto(id){
   InfoDetalle = InfoDetalle.filter(info => info.id !== id);
   ImprimirDetalle(InfoDetalle);
 }
-function TotalPago(){
-  const CantidadPagar = document.querySelector('#cantidadPagar');
+function Cambio(e){
+  let Cantidad = parseInt(e.target.value);
   const Cambio = document.querySelector('#cambioPago');
-  
-  TotalPagar = TotalDetalle
+  Cambio.value = Cantidad  - TotalVenta;
 }
 function CancelarVenta(e){
   e.preventDefault();
