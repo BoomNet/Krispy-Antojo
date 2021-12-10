@@ -40,6 +40,12 @@ let objVenta = {
   precioVenta_producto : ''
 };
 let CantidadProductos = 0, CantidadTotalProductos = 0;
+/* let DetalleVentaAgre = {
+  idventa_detalle: '',
+  idproducto_detalle: '',
+  cantidad_detalle: '',
+  precio
+}; */
 /* ***EVENT LISTENERS*** */
 document.addEventListener('DOMContentLoaded', async () => {
   try {
@@ -425,11 +431,19 @@ function ImprimirDetalle(detalles){
   objVentaProductos.cantidad_venta = CantidadTotalProductos;
 }
 function EliminarProducto(id){
-  InfoDetalle = InfoDetalle.filter(info => info.id !== id);
+  InfoDetalle.forEach(info => {
+    if(info.id === id){
+      if(info.Cantidad > 1){
+        info.Cantidad--;
+      }else{
+        InfoDetalle = InfoDetalle.filter(info => info.id !== id);
+      }
+    }
+  });
   ImprimirDetalle(InfoDetalle);
 }
 function Cambio(e){
-  let Cantidad = parseInt(e.target.value);
+  let Cantidad = parseInt(e.target.value) || '';
   const Cambio = document.querySelector('#cambioPago');
   Cambio.value = Cantidad  - TotalVenta;
   objVentaProductos.pago_venta = Cantidad;
@@ -455,13 +469,12 @@ function CancelarVenta(e){
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
-      InfoDetalle = [];
       swalWithBootstrapButtons.fire(
         'Borrado!',
         'Tu venta ha sido eliminada.',
         'success'
       );
-      ImprimirDetalle(InfoDetalle);
+      window.location.href = `http://localhost:3000/Dashboard/dashboard?View=9&id=${Id}`;
     } else if (
       /* Read more about handling dismissals below */
       result.dismiss === Swal.DismissReason.cancel
@@ -475,9 +488,51 @@ function CancelarVenta(e){
   })
 }
 
-function AgregarVenta(e){
-  e.preventDefault();
-  console.log('Funciona');
+async function AgregarVenta(e){
+  try{
+    e.preventDefault();
+    const {cveusuario_venta, total_venta, cantidad_venta, pago_venta, cambio_venta} = objVentaProductos;
+    if(cveusuario_venta !== '' && total_venta !== '' && cantidad_venta !== ''  && pago_venta !== ''  && cambio_venta !== ''){
+      const url = 'http://localhost:3000/Dashboard/agregarVenta';
+      const FormularioVenta = new FormData();
+      FormularioVenta.append('cveusuario_venta', cveusuario_venta);
+      FormularioVenta.append('total_venta', total_venta);
+      FormularioVenta.append('cantidad_venta', cantidad_venta);
+      FormularioVenta.append('pago_venta', pago_venta);
+      FormularioVenta.append('cambio_venta', cambio_venta);
+
+      const resultado = await fetch(url, {
+        method: 'POST',
+        body: FormularioVenta
+      });
+      const respuesta = await resultado.json();
+      if(respuesta.resultado){
+        Swal.fire({
+          icon: 'success',
+          title: 'Venta agregada',
+          text: 'Tu venta fue agregado correctamente',
+          button: 'OK'
+        }).then( () => {
+          setTimeout(() => {
+              window.location.href = `http://localhost:3000/Dashboard/dashboard?View=9&id=${Id}`;
+          }, 1000);
+        });
+      }
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Faltas campos por llenar!',
+      })
+    }
+  }catch(error){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Hubo un error al guardar tu venta!',
+    })
+  }
+  
 }
 function LimpiarTabla(){
   while(Detalles.firstChild){

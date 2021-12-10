@@ -14,12 +14,11 @@
         public $pago_venta;
         public $cambio_venta;
 
-
         public function __construct($args = [])
         {
             $this->fecha_venta = date('Y/m/d');
             $this->cveusuario_venta = $args['cveusuario_venta'] ?? '';
-            $this->hora_venta = date('h:i:s');
+            $this->hora_venta = date('H:i:s');
             $this->total_venta = $args['total_venta'] ?? '';
             $this->cantidad_venta = $args["cantidad_venta"] ?? '';
             $this->pago_venta = $args['pago_venta'] ?? '';

@@ -36,9 +36,8 @@ class ActiveRecord{
             $InsertarFormulario .= ") VALUES ('";
             $InsertarFormulario .= join("', '", array_values($Atributos));
             $InsertarFormulario .= "');";
-            return ['resultado' => $InsertarFormulario];
-            /* $Resultado = self::$db->query($InsertarFormulario);
-            return $Resultado; */
+            $Resultado = self::$db->query($InsertarFormulario);
+            return $Resultado;
         }   
 
         public function Actualizar(){
